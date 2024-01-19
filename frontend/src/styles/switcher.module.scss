@@ -1,0 +1,12 @@
+.switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+}
+
+.switch:hover {
+  background: #fafafa;
+}

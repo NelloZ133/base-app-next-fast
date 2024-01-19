@@ -1,0 +1,65 @@
+{
+  "layout": {
+    "foldButton": "ย่อ/ขยาย เมนู"
+  },
+  "nav": {},
+  "menu": {
+    "menu": "เมนู",
+    "home": "หน้าหลัก",
+    "app_menu": "เมนูแอป",
+    "sub_menu1": "เมนูย่อย 1",
+    "sub_menu2": "เมนูย่อย 2"
+  },
+  "header": {
+    "home": "หน้าหลัก",
+    "login": "ลงชื่อเข้าใช้",
+    "topic1": "หัวข้อที่ 1",
+    "topic2": "หัวข้อที่ 2"
+  },
+  "main": {
+    "topic1": "หัวข้อที่ 1",
+    "topic2": {
+      "subject": "หัวข้อที่ 2"
+    }
+  },
+  "login": {
+    "username": {
+      "title": "ชื่อผู้ใช้",
+      "errorMessage": "กรุณาใส่ชื่อผู้ใช้"
+    },
+    "password": {
+      "title": "รหัสผ่าน",
+      "errorMessage": "กรุณาใส่รหัสผ่าน"
+    },
+    "forgotPassword": {
+      "title": "ลืมรหัสผ่าน",
+      "placeholder": "ระบุชื่อผู้ใช้ที่ท่านต้องการล้างรหัสผ่าน"
+    },
+    "contactAdmin": {
+      "title": "ติดต่อผู้ดูแล",
+      "content": "สามารถติดต่อ JI & DX โดยตรง หรือ email มาที่"
+    },
+    "resetPassword": "ล้างรหัสผ่าน"
+  },
+  "userMenu": {
+    "profile": "โปรไฟล์",
+    "logOut": "ลงชื่อออก"
+  },
+  "button": {
+    "login": "เข้าสู่ระบบ",
+    "submit": "ส่ง",
+    "clear": "ล้างค่า",
+    "reset": "ล้างค่า",
+    "search": "ค้นหา",
+    "ok": "ตกลง",
+    "cancel": "ยกเลิก",
+    "delete": "ลบ",
+    "approve": "อนุมัติ",
+    "reject": "ตีกลับ",
+    "close": "ปิด"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, en {English} other {ไทย}}"
+  }
+}

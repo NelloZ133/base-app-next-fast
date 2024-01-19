@@ -1,0 +1,17 @@
+.mode {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 2.2rem;
+  width: 2.2rem;
+  transition: 0.4s;
+}
+.mode:hover {
+  background: rgba(140, 140, 140, 0.3);
+}
+
+.span {
+  color: #dc0032 !important;
+}

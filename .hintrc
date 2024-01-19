@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "axe/text-alternatives": [
+      "default",
+      {
+        "document-title": "off"
+      }
+    ],
+    "axe/language": [
+      "default",
+      {
+        "html-has-lang": "off"
+      }
+    ],
+    "meta-viewport": "off",
+    "no-inline-styles": "off",
+    "apple-touch-icons": "off",
+    "manifest-app-name": "off"
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_chr <= 115",
+    "not chrome <= 116",
+    "not edge <= 115",
+    "not firefox <= 116",
+    "not safari <= 16.5",
+    "not samsung <= 21",
+    "not ios_saf <= 16.5",
+    "not opera <= 101"
+  ]
+}

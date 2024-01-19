@@ -1,0 +1,65 @@
+{
+  "layout": {
+    "foldButton": "Fold/Unfold menu"
+  },
+  "nav": {},
+  "menu": {
+    "menu": "Menu",
+    "home": "Home",
+    "app_menu": "App Menu",
+    "sub_menu1": "Sub Menu 1",
+    "sub_menu2": "Sub Menu 2"
+  },
+  "header": {
+    "home": "Home",
+    "login": "Login",
+    "topic1": "Topic 1",
+    "topic2": "Topic 2"
+  },
+  "main": {
+    "topic1": "Topic 1",
+    "topic2": {
+      "subject": "Topic 2"
+    }
+  },
+  "login": {
+    "username": {
+      "title": "Username",
+      "errorMessage": "Please input your username"
+    },
+    "password": {
+      "title": "Password",
+      "errorMessage": "Please input your password"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password",
+      "placeholder": "Enter the username you want to reset password"
+    },
+    "contactAdmin": {
+      "title": "Contact administrator",
+      "content": "Please contact JI & DX directly or send email to..."
+    },
+    "resetPassword": "Reset password"
+  },
+  "userMenu": {
+    "profile": "Profile",
+    "logOut": "Log Out"
+  },
+  "button": {
+    "login": "Login",
+    "submit": "Submit",
+    "clear": "Clear",
+    "reset": "Reset",
+    "search": "Search",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "approve": "Approve",
+    "reject": "Reject",
+    "close": "Close"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, en {English} other {ไทย}}"
+  }
+}
