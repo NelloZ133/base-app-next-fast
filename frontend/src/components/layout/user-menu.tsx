@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useTranslations } from "next-intl";
-import { Dropdown, Space, Avatar, Typography } from "antd";
+import { Avatar, Dropdown, Space, Typography } from "antd";
 import type { MenuProps } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 
@@ -9,7 +9,7 @@ import { useRouter } from "@/navigation";
 
 export const UserMenu: FC = () => {
   const router = useRouter();
-  const t = useTranslations("userMenu");
+  const c = useTranslations("component");
   const { user, username, shortname } = UserStore();
   const clearUser = UserStore((state) => state.clearUser);
 
@@ -20,14 +20,14 @@ export const UserMenu: FC = () => {
 
   const items: MenuProps["items"] = [
     {
-      label: <a href="http://10.122.82.10/profile">{t("profile")}</a>,
+      label: <a href="http://dummy/profile">{c("userMenu.profile")}</a>,
       key: 0,
     },
     {
       type: "divider",
     },
     {
-      label: <a onClick={handleLogOut}>{t("logOut")}</a>,
+      label: <a onClick={handleLogOut}>{c("userMenu.logOut")}</a>,
       key: 3,
     },
   ];

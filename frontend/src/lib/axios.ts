@@ -22,7 +22,7 @@ axiosInstance.interceptors.response.use(
     switch (error?.response?.status) {
       case 401:
         message.error("Unauthorized! Please try to login again", undefined, () => {
-          window.location.replace("/login");
+          window.location.replace("/en/login");
         });
         break;
       case 403:

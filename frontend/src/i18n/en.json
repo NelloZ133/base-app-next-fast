@@ -1,62 +1,84 @@
 {
   "layout": {
-    "foldButton": "Fold/Unfold menu"
-  },
-  "nav": {},
-  "menu": {
-    "menu": "Menu",
-    "home": "Home",
-    "app_menu": "App Menu",
-    "sub_menu1": "Sub Menu 1",
-    "sub_menu2": "Sub Menu 2"
-  },
-  "header": {
-    "home": "Home",
-    "login": "Login",
-    "topic1": "Topic 1",
-    "topic2": "Topic 2"
-  },
-  "main": {
-    "topic1": "Topic 1",
-    "topic2": {
-      "subject": "Topic 2"
+    "header": {
+      "home": "Home",
+      "login": "Login",
+      "topic1": "Topic 1",
+      "topic2": "Topic 2"
+    },
+    "menu": {
+      "main": {
+        "topic1": "Topic 1",
+        "topic2": "Topic 2"
+      },
+      "side": {
+        "home": "Home",
+        "mainTopic": "Main Topic",
+        "menu": "Menu",
+        "topic1": "Topic 1",
+        "topic2": "Topic 2"
+      }
     }
   },
-  "login": {
-    "username": {
-      "title": "Username",
-      "errorMessage": "Please input your username"
-    },
-    "password": {
-      "title": "Password",
-      "errorMessage": "Please input your password"
-    },
-    "forgotPassword": {
-      "title": "Forgot Password",
-      "placeholder": "Enter the username you want to reset password"
-    },
-    "contactAdmin": {
-      "title": "Contact administrator",
-      "content": "Please contact JI & DX directly or send email to..."
-    },
-    "resetPassword": "Reset password"
+  "page": {
+    "login": {
+      "content": {
+        "contactAdmin": "Please contact JI-DX directly or send email to..."
+      },
+      "title": {
+        "contactAdmin": "Contact administrator",
+        "forgotPassword": "Forgot password",
+        "password": "Password",
+        "resetPassword": "Reset password",
+        "username": "Username"
+      }
+    }
   },
-  "userMenu": {
-    "profile": "Profile",
-    "logOut": "Log Out"
+  "component": {
+    "forgotPassword": {
+      "label": {
+        "username": "Username"
+      },
+      "placeholder": {
+        "username": "Enter the username you want to reset password"
+      }
+    },
+    "userMenu": {
+      "logOut": "Log out",
+      "profile": "Profile"
+    }
   },
   "button": {
-    "login": "Login",
-    "submit": "Submit",
-    "clear": "Clear",
-    "reset": "Reset",
-    "search": "Search",
-    "ok": "OK",
-    "cancel": "Cancel",
-    "delete": "Delete",
+    "add": "Insert new item",
+    "addInDatabase": "Add in database",
     "approve": "Approve",
+    "cancel": "Cancel",
+    "check": "Check",
+    "clear": "Clear",
+    "close": "Close",
+    "copy": "Copy",
+    "delete": "Delete",
+    "deleteItem": "Delete item",
+    "edit": "Edit item",
+    "fold": "Fold/Unfold Menu",
+    "login": "Login",
+    "moveDown": "Move down",
+    "moveUp": "Move up",
+    "no": "No",
+    "ok": "OK",
+    "refresh": "Refresh",
     "reject": "Reject",
-    "close": "Close"
+    "reset": "Reset",
+    "save": "Save",
+    "search": "Search",
+    "submit": "Submit",
+    "use": "Use",
+    "yes": "Yes"
+  },
+  "message": {
+    "fieldRequired": "Field is required",
+    "passwordRequired": "Password is required",
+    "usernameRequired": "Username is required"
   },
   "LocaleSwitcher": {
     "label": "Change language",

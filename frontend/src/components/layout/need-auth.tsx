@@ -1,4 +1,3 @@
-"use client";
 import { Fragment, FC, useEffect } from "react";
 
 import { useRouter } from "@/navigation";

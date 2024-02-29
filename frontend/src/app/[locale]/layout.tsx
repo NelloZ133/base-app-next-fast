@@ -9,7 +9,7 @@ import StyledComponentsRegistry from "../../lib/AntdRegistry";
 import Loading from "./loading";
 
 export const metadata: Metadata = {
-  title: "Control Item Management",
+  title: "Base App Next-Fast",
   description: "Powered by JI & DX",
   icons: "../favicon.ico",
 };

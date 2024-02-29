@@ -8,6 +8,9 @@ import { ModeStore } from "@/store";
 
 const { Option } = Select;
 
+import { Noto_Sans_Thai } from "next/font/google";
+const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
+
 const LocaleSwitcher = () => {
   const t = useTranslations("LocaleSwitcher");
   const [isPending, startTransition] = useTransition();
@@ -30,7 +33,7 @@ const LocaleSwitcher = () => {
         defaultValue={locale}
         disabled={isPending}
         onChange={onSelectChange}
-        style={{ fontFamily: "Noto Sans Thai" }}>
+        style={{ fontFamily: notoTH.style.fontFamily, }}>
         {locales.map((cur) => (
           <Option key={cur} value={cur}>
             {t("locale", { locale: cur })}

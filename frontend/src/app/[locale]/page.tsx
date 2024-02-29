@@ -1,12 +1,15 @@
 "use client";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { ConfigProvider, theme, Typography, Layout } from "antd";
+import { ConfigProvider, Layout, Typography, theme } from "antd";
 import type { ThemeConfig } from "antd";
 const { Content } = Layout;
 
-import { ModeStore, LayoutStore } from "@/store";
+import { LayoutStore, ModeStore } from "@/store";
 import { Link } from "@/navigation";
+
+import { Noto_Sans_Thai } from "next/font/google";
+const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
 
 const Home = () => {
   const { setHeaderTitle, setBackable, setBackTarget } = LayoutStore.getState();
@@ -14,18 +17,17 @@ const Home = () => {
   const config: ThemeConfig = {
     token: {
       colorPrimary: "#1890ff",
-      fontFamily: "Noto Sans Thai",
+      fontFamily: notoTH.style.fontFamily,
     },
     algorithm: toggleMode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
   };
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const t = useTranslations("main");
-  const h = useTranslations("header");
+  const l = useTranslations("layout");
 
   useEffect(() => {
-    setHeaderTitle(h("home"));
+    setHeaderTitle(l("header.home"));
     setBackable(false);
     setBackTarget(undefined);
   }, []);
@@ -38,11 +40,11 @@ const Home = () => {
         }}>
         <Content className="container">
           <Link href={"/"}>
-            <Typography className="main-menu-item">{t("topic1")}</Typography>
+            <Typography className="main-menu-item">{l("menu.main.topic1")}</Typography>
           </Link>
 
           <Link href={"/"}>
-            <Typography className="main-menu-item">{t("topic2.subject")}</Typography>
+            <Typography className="main-menu-item">{l("menu.main.topic2")}</Typography>
           </Link>
         </Content>
       </div>

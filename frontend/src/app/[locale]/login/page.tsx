@@ -1,16 +1,20 @@
 "use client";
-import { Button, Form, Input, message, Modal, theme, ConfigProvider, Layout, Space } from "antd";
+import { Button, ConfigProvider, Form, Input, Layout, Modal, Space, Typography, message, theme } from "antd";
 import type { ThemeConfig } from "antd";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { NextPage } from "next";
 const { Content } = Layout;
+const { Text } = Typography;
 
+import { LayoutStore, ModeStore } from "@/store";
+import { useRouter } from "@/navigation";
 import { login, forgotPassword } from "@/actions";
 import { IForgotPasswordForm } from "@/types/user.type";
-import SelectForgotPasswordModal from "@/components/views/select-forgot-password";
-import { ModeStore, LayoutStore } from "@/store";
-import { useRouter } from "@/navigation";
+import SelectForgotPasswordModal from "@/components/views/forgot-password-view";
+
+import { Noto_Sans_Thai } from "next/font/google";
+const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
 
 interface ILoginForm {
   username: string;
@@ -24,16 +28,17 @@ const LoginPage: NextPage = () => {
   const config: ThemeConfig = {
     token: {
       colorPrimary: "#1890ff",
-      fontFamily: "Noto Sans Thai",
+      fontFamily: notoTH.style.fontFamily,
     },
     algorithm: toggleMode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
   };
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const t = useTranslations("login");
   const b = useTranslations("button");
-  const h = useTranslations("header");
+  const l = useTranslations("layout");
+  const m = useTranslations("message");
+  const p = useTranslations("page");
 
   const router = useRouter();
   const [selectForgotPasswordModal, setSelectForgotPasswordModal] = useState<boolean>(false);
@@ -59,7 +64,7 @@ const LoginPage: NextPage = () => {
   };
 
   useEffect(() => {
-    setHeaderTitle(h("login"));
+    setHeaderTitle(l("header.login"));
     setBackable(true);
   }, []);
 
@@ -76,60 +81,58 @@ const LoginPage: NextPage = () => {
             wrapperCol={{ span: 16 }}
             initialValues={{ remember: true }}
             onFinish={onFinish}
-            autoComplete="off"
-            // style={{ width: "45%", justifyContent: "center" }}
-          >
+            autoComplete="off">
             <Form.Item
-              label={`${t("username.title")}`}
+              label={p("login.title.username")}
               name="username"
-              rules={[{ required: true, message: t("username.errorMessage") }]}>
+              rules={[{ required: true, message: m("usernameRequired") }]}>
               <Input />
             </Form.Item>
             <Form.Item
-              label={`${t("password.title")}`}
+              label={p("login.title.password")}
               name="password"
-              rules={[{ required: true, message: t("password.errorMessage") }]}>
+              rules={[{ required: true, message: m("passwordRequired") }]}>
               <Input.Password />
             </Form.Item>
-            <Form.Item wrapperCol={{ offset: 10 }} className="login-button">
+            <Form.Item wrapperCol={{ offset: 10 }} className="login">
               <Space>
                 <Button type="primary" htmlType="submit" className="button-login">
-                  {`${b("login")}`}
+                  {b("login")}
                 </Button>
                 <Button
                   type="dashed"
                   className="button-forgot-password"
                   onClick={() => setSelectForgotPasswordModal(true)}>
-                  {`${t("forgotPassword.title")}`}
+                  {p("login.title.forgotPassword")}
                 </Button>
               </Space>
               <Button type="default" className="button-contact-admin" onClick={() => setSelectContactAdmin(true)}>
-                {`${t("contactAdmin.title")}`}
+                {p("login.title.contactAdmin")}
               </Button>
             </Form.Item>
           </Form>
 
           <Modal
-            title={`${t("contactAdmin.title")}`}
+            title={p("login.title.contactAdmin")}
             open={selectContactAdmin}
             footer={null}
             onCancel={() => setSelectContactAdmin(false)}
             centered
             maskClosable={false}
             keyboard={true}>
-            <span>{`${t("contactAdmin.content")}`}</span>
+            <Text>{p("login.content.contactAdmin")}</Text>
             <br />
             <a href="mailto:arief.kaday.a5c@ap.denso.com?subject=[Lot Quality Check]">
               &nbsp;&#x2022; arief.kaday.a5c@ap.denso.com
             </a>
             <br />
-            <a href="mailto:khunakon.lerdsrisampan.a3z@ap.denso.com?subject=[Lot Quality Check]">
-              &nbsp;&#x2022; khunakon.lerdsrisampan.a3z@ap.denso.com
+            <a href="mailto:khessarin.kaeoli.a8y@ap.denso.com?subject=[Lot Quality Check]">
+              &nbsp;&#x2022; khessarin.kaeoli.a8y@ap.denso.com
             </a>
           </Modal>
         </Content>
         <SelectForgotPasswordModal
-          title={`${t("forgotPassword.title")}`}
+          title={p("login.title.forgotPassword")}
           visible={selectForgotPasswordModal}
           onFinish={onForgotPasswordFinish}
           onCancel={handleCancelSelectForgotPassword}

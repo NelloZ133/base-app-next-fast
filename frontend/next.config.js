@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
 const webpack = require("webpack");
-const withNextIntl = require("next-intl/plugin")();
+const createNextIntlPlugin = require("next-intl/plugin");
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig = {
   output: "standalone",

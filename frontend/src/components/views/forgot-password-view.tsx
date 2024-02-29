@@ -1,7 +1,9 @@
-import { IForgotPasswordForm } from "@/types";
 import { Form, Modal, Input, Button } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import { FC, useEffect } from "react";
+import { FC, Fragment, useEffect } from "react";
+import { useTranslations } from "next-intl";
+
+import { IForgotPasswordForm } from "@/types";
 
 interface IProps {
   title: string;
@@ -10,7 +12,11 @@ interface IProps {
   onCancel?: () => void;
 }
 
-export const SelectResetPasswordModal: FC<IProps> = ({ title, visible, onFinish, onCancel }: IProps) => {
+export const SelectForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish, onCancel }: IProps) => {
+  const b = useTranslations("button");
+  const c = useTranslations("component");
+  const m = useTranslations("message");
+
   const [form] = useForm<IForgotPasswordForm>();
 
   const handleCancel = () => {
@@ -25,7 +31,7 @@ export const SelectResetPasswordModal: FC<IProps> = ({ title, visible, onFinish,
   }, [visible]);
 
   return (
-    <>
+    <Fragment>
       <Modal
         title={title}
         open={visible}
@@ -36,7 +42,6 @@ export const SelectResetPasswordModal: FC<IProps> = ({ title, visible, onFinish,
         keyboard={true}>
         <Form
           form={form}
-          className="form-forgot-password"
           layout="vertical"
           autoComplete="off"
           onFinish={(v) => {
@@ -45,32 +50,29 @@ export const SelectResetPasswordModal: FC<IProps> = ({ title, visible, onFinish,
             });
           }}>
           <Form.Item
-            label="Username"
+            label={c("forgotPassword.label.username")}
             name="user_id"
-            rules={[{ required: true, message: "Please input your username" }]}>
-            <Input placeholder="Enter the username you want to reset password" />
+            rules={[{ required: true, message: m("usernameRequired") }]}>
+            <Input placeholder={c("forgotPassword.placeholder.username")} />
           </Form.Item>
           <Form.Item>
-            <div className="flex w-full justify-end mb-4">
-              <Button
-                className="mx-1"
-                type="primary"
-                htmlType="reset"
-                onClick={() => {
-                  form.resetFields();
-                }}
-                danger>
-                Reset
-              </Button>
-              <Button className="mx-1 register-user" type="primary" htmlType="submit">
-                Submit
-              </Button>
-            </div>
+            <Button
+              type="primary"
+              htmlType="reset"
+              onClick={() => {
+                form.resetFields();
+              }}
+              danger>
+              {b("reset")}
+            </Button>
+            <Button type="primary" htmlType="submit">
+              {b("submit")}
+            </Button>
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </Fragment>
   );
 };
 
-export default SelectResetPasswordModal;
+export default SelectForgotPasswordModal;

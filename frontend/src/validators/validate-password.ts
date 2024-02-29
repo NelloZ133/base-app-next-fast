@@ -1,38 +1,16 @@
+/*
+ * At least one uppercase letter ((?=.*[A-Z]))
+ * At least one lowercase letter ((?=.*[a-z]))
+ * At least one digit ((?=.*\d))
+ * At least one special character ((?=.*[!@#$%^&*()\-_=+{};:,<.>/?\\|\[\]]))
+ * Does not contain the common word "Denso123" ((?!.*Denso123))
+ * Must be at least 8 characters long (implicitly enforced by the .* at the end)
+ */
+
 function isPasswordComplex(password: string): boolean {
-  // Check if password is at least 8 characters long
-  if (password.length < 8) {
-    return false;
-  }
+  const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>/?\\|\[\]])(?!.*Denso123).*$/;
 
-  // Check if password contains at least one uppercase letter
-  if (!/[A-Z]/.test(password)) {
-    return false;
-  }
-
-  // Check if password contains at least one lowercase letter
-  if (!/[a-z]/.test(password)) {
-    return false;
-  }
-
-  // Check if password contains at least one digit
-  if (!/\d/.test(password)) {
-    return false;
-  }
-
-  // Check if password contains at least one special character
-  if (!/[!@#$%^&*()\-_=+{};:,<.>/?\\|\[\]]/.test(password)) {
-    return false;
-  }
-
-  // Check if password does not contain any common words or patterns
-  const commonWords: string[] = ["Denso123"];
-  for (const word of commonWords) {
-    if (password.toLowerCase().includes(word)) {
-      return false;
-    }
-  }
-
-  return true;
+  return passwordRegex.test(password);
 }
 
 export function validatePassword(

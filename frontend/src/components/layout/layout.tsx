@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Layout, ConfigProvider, Space, Tooltip, Typography, theme } from "antd";
+import { ConfigProvider, Layout, Space, Tooltip, Typography, theme } from "antd";
 import type { ThemeConfig } from "antd";
 import { SiderTheme } from "antd/es/layout/Sider";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
@@ -12,7 +12,13 @@ import Navigation from "./navigation";
 
 const { Sider, Content } = Layout;
 
+import { Noto_Sans_Thai } from "next/font/google";
+const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
+
 export const LayoutCustom = ({ children }: { children: React.ReactNode }) => {
+  const b = useTranslations("button");
+  const l = useTranslations("layout");
+
   const { isLoggedIn } = UserStore();
 
   const toggleMode = ModeStore((state) => state.toggleMode);
@@ -23,12 +29,10 @@ export const LayoutCustom = ({ children }: { children: React.ReactNode }) => {
   const config: ThemeConfig = {
     token: {
       colorPrimary: "#1890ff",
-      fontFamily: "Noto Sans Thai",
+      fontFamily: notoTH.style.fontFamily,
     },
     algorithm: toggleMode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
   };
-  const t = useTranslations("layout");
-  const m = useTranslations("menu");
 
   const [collapsed, setCollapsed] = useState<boolean>(true);
 
@@ -44,7 +48,7 @@ export const LayoutCustom = ({ children }: { children: React.ReactNode }) => {
         <Layout>
           {isLoggedIn() && (
             <Sider theme={toggleMode as SiderTheme} trigger={null} collapsible collapsed={collapsed}>
-              <Tooltip title={t("foldButton")} placement="right" mouseEnterDelay={0.8}>
+              <Tooltip title={b("fold")} placement="right" mouseEnterDelay={0.8}>
                 <Space style={{ paddingLeft: "1rem", paddingTop: "1rem" }}>
                   {collapsed ? (
                     <MenuUnfoldOutlined
@@ -57,7 +61,7 @@ export const LayoutCustom = ({ children }: { children: React.ReactNode }) => {
                       onClick={() => setCollapsed(!collapsed)}
                     />
                   )}
-                  <Typography style={{ fontWeight: 600 }}>{`${m("menu")}`}</Typography>
+                  <Typography style={{ fontWeight: 600 }}>{l("menu.side.menu")}</Typography>
                 </Space>
               </Tooltip>
               <SidebarMenu />

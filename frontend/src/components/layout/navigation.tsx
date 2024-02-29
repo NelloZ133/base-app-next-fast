@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import React, { FC } from "react";
 import { theme, ConfigProvider, Typography } from "antd";
@@ -11,6 +10,9 @@ import styles from "@/styles/nav.module.scss";
 import { ModeStore, LayoutStore } from "@/store/";
 import UserMenu from "./user-menu";
 import LocaleSwitcher from "./locale-switcher";
+
+import { Noto_Sans_Thai } from "next/font/google";
+const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
 
 const Navigation: FC = () => {
   const { headerTitle } = LayoutStore();
@@ -27,7 +29,7 @@ const Navigation: FC = () => {
   const config: ThemeConfig = {
     token: {
       colorPrimary: "#1890ff",
-      fontFamily: "Noto Sans Thai",
+      fontFamily: notoTH.style.fontFamily,
     },
     algorithm: toggleMode === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
   };
@@ -60,7 +62,7 @@ const Navigation: FC = () => {
             alignItems: "center",
           }}>
           <div onClick={changeTheme} className={styles.mode}>
-            {toggleMode === "light" ? <BiSun color="#8c8c8c" size={25} /> : <BsMoonStars color="white" size={20} />}
+            {toggleMode === "light" ? <BiSun color="#8c8c8c" size={25} /> : <BsMoonStars color="#ffffff" size={20} />}
           </div>
           <LocaleSwitcher />
           <UserMenu />

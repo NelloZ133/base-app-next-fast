@@ -1,19 +1,25 @@
-import { Select, Spin, Tag, Tooltip } from "antd";
+import { Select, Spin, Tag, Tooltip, Typography } from "antd";
 import type { SelectProps } from "antd/es/select";
 import debounce from "lodash/debounce";
 import { Fragment, useEffect, useState } from "react";
 import { TbMoodConfuzed } from "react-icons/tb";
+import { ModeStore } from "@/store";
+
+const { Text } = Typography;
+
 interface IDebounceSelectProps<T = any> extends Omit<SelectProps<T | T[] | string[]>, "options" | "children"> {
-  fetchOption: (search: string, pathSearch?: string, enableNewItem?: boolean) => Promise<T[]>;
+  fetchOption: (search: string | string[], pathSearch?: string, enableNewItem?: boolean) => Promise<T[]>;
   fetchKey?: "label" | "value";
   defaultLoadOption?: boolean;
-  defaultLoadValue?: string;
+  defaultLoadValue?: string | string[];
   tagWidth?: number | string;
   wrap?: boolean;
   debounceTimeout?: number;
   pathSearch?: string;
   enableNewItem?: boolean;
+  maxCount?: number;
   initialValue?: string[] | string;
+  disabled?: boolean;
 }
 
 const DebounceSelect = <
@@ -37,11 +43,19 @@ const DebounceSelect = <
   onChange,
   pathSearch = "",
   enableNewItem = false,
+  maxCount,
   initialValue = [],
+  disabled,
   ...props
 }: IDebounceSelectProps<T>) => {
+  const { toggleMode } = ModeStore();
   const [fetching, setFetching] = useState(false);
   const [options, setOptions] = useState<T[]>([]);
+
+  const tagStyle =
+    toggleMode === "light"
+      ? { color: "#141414", backgroundColor: "#fafafa" }
+      : { color: "#fafafa", backgroundColor: "#1f1f1f" };
 
   const tagRender = (props: any) => {
     const { label } = props;
@@ -54,7 +68,7 @@ const DebounceSelect = <
         }}
         className={isFix ? "tag-fix-width" : "tag-wrap"}
         {...props}>
-        <p>{label}</p>
+        <p style={tagStyle}>{label}</p>
       </Tag>
     );
 
@@ -75,13 +89,13 @@ const DebounceSelect = <
     );
   };
 
-  const loadOptions = (value: string) => {
+  const loadOptions = (value: string | string[]) => {
     setOptions([]);
     setFetching(true);
 
     fetchOption(value, pathSearch, enableNewItem)
       .then((searchOptions) => {
-        let optionList = [...searchOptions];
+        let optionList = searchOptions && searchOptions.length > 0 ? [...searchOptions] : [];
         let filteredDuplicateOptions: T[] = [];
 
         if (Array.isArray(selectValue)) {
@@ -114,7 +128,13 @@ const DebounceSelect = <
         filteredDuplicateOptions = filteredDuplicateOptions.filter((opt) => {
           const val = opt[fetchKey as keyof T];
           if (typeof val === "string") {
-            return val.toLowerCase().includes(value.toLowerCase());
+            if (typeof value === "string") {
+              return val.toLowerCase().includes(value.toLowerCase());
+            } else if (Array.isArray(value)) {
+              return value.some((v) => v.toLowerCase() === val.toLowerCase());
+            } else {
+              return false;
+            }
           }
           return false;
         });
@@ -158,7 +178,7 @@ const DebounceSelect = <
         ) : (
           <div className="select-notfound">
             <TbMoodConfuzed className="default-icon-size" />
-            <span style={{ marginLeft: 5 }}>Not found ...</span>
+            <Text style={{ marginLeft: 5 }}>Not found ...</Text>
           </div>
         )
       }
@@ -169,6 +189,8 @@ const DebounceSelect = <
       onChange={onChange}
       // onSelect={onSelect}
       allowClear={allowClear}
+      maxCount={maxCount}
+      disabled={disabled}
       {...props}
     />
   );
