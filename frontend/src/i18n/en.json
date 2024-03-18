@@ -50,7 +50,6 @@
   },
   "button": {
     "add": "Insert new item",
-    "addInDatabase": "Add in database",
     "approve": "Approve",
     "cancel": "Cancel",
     "check": "Check",
@@ -58,7 +57,6 @@
     "close": "Close",
     "copy": "Copy",
     "delete": "Delete",
-    "deleteItem": "Delete item",
     "edit": "Edit item",
     "fold": "Fold/Unfold Menu",
     "login": "Login",
