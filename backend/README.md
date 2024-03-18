@@ -1,1 +1,0 @@
-# lot_quality_check_backend
