@@ -8,7 +8,7 @@
   - PG_DB: a name of database
   - EMAIL_HOST: url of smtp server
   - EMAIL_PORT: a port to connect to smtp server
-  - EMAIL_USERNAME: usernam to authenticate with smtp server
+  - EMAIL_USERNAME: username to authenticate with smtp server
   - EMAIL_PASSWORD: password to authenticate with smtp server
   - API_KEY: an api key
 - Edit environment value in backend/runcron.sh. There are variables about email and api key. Please use the similar values as in .env file
