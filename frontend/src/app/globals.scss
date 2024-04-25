@@ -16,19 +16,7 @@ a {
   text-decoration: none;
 }
 
-p {
-  color: #001d66;
-}
-
-h1 {
-  font-size: 2.25rem;
-  font-weight: 600;
-  color: #001d66;
-}
-
 .header-title {
-  font-size: 2rem;
-  font-weight: 600;
   text-decoration: underline;
 }
 
@@ -52,9 +40,7 @@ h1 {
 }
 
 .main-menu-item {
-  font-size: 2rem;
   transition: 0.3s;
-  font-weight: 500;
 }
 
 .menu {
@@ -62,7 +48,6 @@ h1 {
   &:not([class*="ant-menu-inline-collapsed"]) {
     & li {
       padding-left: 1rem !important;
-      // padding-right: 1rem !important;
     }
     .ant-menu-submenu {
       padding-left: 0 !important;

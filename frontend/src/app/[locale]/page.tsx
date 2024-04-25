@@ -40,11 +40,14 @@ const Home = () => {
         }}>
         <Content className="container">
           <Link href={"/"}>
-            <Typography className="main-menu-item">{l("menu.main.topic1")}</Typography>
+            <Typography.Title className="main-menu-item" level={1}>
+              {l("menu.main.topic1")}
+            </Typography.Title>
           </Link>
-
           <Link href={"/"}>
-            <Typography className="main-menu-item">{l("menu.main.topic2")}</Typography>
+            <Typography.Title className="main-menu-item" level={1}>
+              {l("menu.main.topic2")}
+            </Typography.Title>
           </Link>
         </Content>
       </div>

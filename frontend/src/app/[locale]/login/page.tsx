@@ -96,17 +96,17 @@ const LoginPage: NextPage = () => {
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 10 }} className="login">
               <Space>
-                <Button type="primary" htmlType="submit" className="button-login">
+                <Button style={{ width: "9rem" }} type="primary" htmlType="submit">
                   {b("login")}
                 </Button>
-                <Button
-                  type="dashed"
-                  className="button-forgot-password"
-                  onClick={() => setSelectForgotPasswordModal(true)}>
+                <Button type="dashed" style={{ width: "9rem" }} onClick={() => setSelectForgotPasswordModal(true)}>
                   {p("login.title.forgotPassword")}
                 </Button>
               </Space>
-              <Button type="default" className="button-contact-admin" onClick={() => setSelectContactAdmin(true)}>
+              <Button
+                type="default"
+                style={{ width: "18rem", marginTop: "0.5rem" }}
+                onClick={() => setSelectContactAdmin(true)}>
                 {p("login.title.contactAdmin")}
               </Button>
             </Form.Item>

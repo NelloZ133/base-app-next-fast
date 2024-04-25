@@ -52,7 +52,7 @@ const Navigation: FC = () => {
             alignItems: "center",
           }}>
           <Image src={denso} alt="denso" priority width={100} />
-          <Typography className="header-title">{`${headerTitle}`}</Typography>
+          <Typography.Title className="header-title" level={2}>{`${headerTitle}`}</Typography.Title>
         </div>
         <div
           style={{
