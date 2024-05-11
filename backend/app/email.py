@@ -15,7 +15,7 @@ smtp_server = os.environ.get("EMAIL_HOST")
 smtp_port = os.environ.get("EMAIL_PORT")
 smtp_username = os.environ.get("EMAIL_USERNAME")
 smpt_password = os.environ.get("EMAIL_PASSWORD")
-sender_email = "LOT_QUALITY_CHEKC_NOTIFIER"
+sender_email = os.environ.get("EMAIL_SENDER")
 
 
 def send_mail(

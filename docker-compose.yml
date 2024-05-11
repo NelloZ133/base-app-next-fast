@@ -28,7 +28,7 @@ services:
     build: ./backend
     container_name: app_name_be
     ports:
-      - 8888:8888
+      - 8000:8000
     volumes:
       - ./backend:/code
     env_file:
