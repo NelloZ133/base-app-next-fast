@@ -33,3 +33,12 @@ services:
       - ./backend:/code
     env_file:
       - ./backend/.env
+  scheduler:
+    build: ./scheduler
+    container_name: scheduler
+    volumes:
+      - ./scheduler:/code
+    env_file:
+      - ./scheduler/.env
+    depends_on:
+      - app_name_be

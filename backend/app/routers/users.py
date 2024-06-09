@@ -35,14 +35,14 @@ def generate_random_password(length: int = 12) -> str:
 
 async def _send_reset_password_mail(user, new_password: str, email: str):
     html = ""
-    subject = "Reset Password PE-DX Apps"
+    subject = "Reset Password JI&DX Apps"
     with open(
-        "/code/email_templates/email_template_5m1e_reset_password.txt",
-        encoding="utf-8"
-        # "email_templates/email_template_5m1e_reset_password.txt", encoding="utf-8"
+        "/code/email_templates/reset_password.txt",
+        encoding="utf-8",
+        # "email_templates/reset_password.txt", encoding="utf-8"
     ) as f:
         for line in f:
-            html += line.strip()
+            html += line.strip() + "\r\n"
     html = html.replace(
         "{requester_name}", user["firstname"] + " " + user["lastname"][0] + "."
     )
@@ -61,7 +61,7 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
     user_manager = UserManager()
 
     @router.get(
-        "/get_all",
+        "/all_users",
         response_model=AllUsersResponse,
         dependencies=[Depends(api_key_auth)],
     )
@@ -69,23 +69,23 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
         return AllUsersResponse(users=await user_manager.get_all_users(db=db))
 
     @router.get(
-        "/get_by_user_id",
+        "/user_by_user_id",
         response_model=UserDetail,
         dependencies=[Depends(api_key_auth)],
     )
-    async def get_user_by_user_id(v: str, db: AsyncSession = Depends(db)):
-        user = await user_manager.get_by_user_id(user_id=v, db=db)
+    async def get_user_by_user_id(user_id: str, db: AsyncSession = Depends(db)):
+        user = await user_manager.get_by_user_id(user_id=user_id, db=db)
         return user
 
     @router.get(
-        "/get_by_email", response_model=UserDetail, dependencies=[Depends(api_key_auth)]
+        "/user_by_email", response_model=UserDetail, dependencies=[Depends(api_key_auth)]
     )
     async def get_user_by_email(v: str, db: AsyncSession = Depends(db)):
         user = await user_manager.get_by_email(email=v, db=db)
         return user
 
     @router.get(
-        "/get_by_user_uuid",
+        "/user_by_user_uuid",
         response_model=UserDetail,
         dependencies=[Depends(api_key_auth)],
     )
@@ -94,7 +94,7 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
         return user
 
     @router.get(
-        "/get_user_by_line_id",
+        "/user_by_line_id",
         response_model=AllUsersResponse,
         dependencies=[Depends(api_key_auth)],
     )
@@ -103,7 +103,7 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
         return AllUsersResponse(users=user)
 
     @router.get(
-        "/get_positions",
+        "/positions",
         response_model=PositionResponse,
         dependencies=[Depends(api_key_auth)],
     )
@@ -132,12 +132,14 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
             firstname=user.firstname,
             lastname=user.lastname,
             email=user.email.lower() if user.email is not None else None,
-            supervisor_email=user.supervisor_email.lower()
-            if user.supervisor_email is not None
-            else None,
-            manager_email=user.manager_email.lower()
-            if user.manager_email is not None
-            else None,
+            supervisor_email=(
+                user.supervisor_email.lower()
+                if user.supervisor_email is not None
+                else None
+            ),
+            manager_email=(
+                user.manager_email.lower() if user.manager_email is not None else None
+            ),
             app_line_id=user.app_line_id,
             position_id=user.position_id,
             section_code=user.section_code,
@@ -203,21 +205,27 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
             user_id=update_user["user_id"],
             firstname=update_user["firstname"],
             lastname=update_user["lastname"],
-            email=update_user["email"].lower()
-            if update_user["email"] is not None
-            else None,
-            supervisor_email=update_user["supervisor_email"].lower()
-            if update_user["supervisor_email"] is not None
-            else None,
-            manager_email=update_user["manager_email"].lower()
-            if update_user["manager_email"] is not None
-            else None,
+            email=(
+                update_user["email"].lower()
+                if update_user["email"] is not None
+                else None
+            ),
+            supervisor_email=(
+                update_user["supervisor_email"].lower()
+                if update_user["supervisor_email"] is not None
+                else None
+            ),
+            manager_email=(
+                update_user["manager_email"].lower()
+                if update_user["manager_email"] is not None
+                else None
+            ),
             position_id=update_user["position_id"],
             section_code=update_user["section_code"],
             concern_line=update_user["concern_line"],
-            main_line=update_user["main_line"]
-            if update_user["main_line"] is not None
-            else 0,
+            main_line=(
+                update_user["main_line"] if update_user["main_line"] is not None else 0
+            ),
             shift=update_user["shift"],
             created_at=update_user["created_at"],
             updated_at=update_user["updated_at"],

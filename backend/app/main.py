@@ -2,12 +2,12 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from utils.logger import get_logger
 
-# need import models for auto create
-from app.routers import (
-    users_routers,
-)
+from app.routers import users_routers
 from app.dependencies import get_common_pg_async_db, get_app_pg_async_db
+
+logger = get_logger(__name__)
 
 app = FastAPI()
 
