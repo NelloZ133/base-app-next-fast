@@ -4,6 +4,7 @@ import type { ThemeConfig } from "antd";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { NextPage } from "next";
+
 const { Content } = Layout;
 const { Text } = Typography;
 
@@ -11,7 +12,7 @@ import { LayoutStore, ModeStore } from "@/store";
 import { useRouter } from "@/navigation";
 import { login, forgotPassword } from "@/actions";
 import { IForgotPasswordForm } from "@/types/user.type";
-import SelectForgotPasswordModal from "@/components/views/forgot-password-view";
+import ForgotPasswordModal from "@/components/views/forgot-password-view";
 
 import { Noto_Sans_Thai } from "next/font/google";
 const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
@@ -131,7 +132,7 @@ const LoginPage: NextPage = () => {
             </a>
           </Modal>
         </Content>
-        <SelectForgotPasswordModal
+        <ForgotPasswordModal
           title={p("login.title.forgotPassword")}
           visible={selectForgotPasswordModal}
           onFinish={onForgotPasswordFinish}

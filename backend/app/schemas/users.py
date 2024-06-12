@@ -3,80 +3,73 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 
 
-class UserLogin(BaseModel):
-    user_id: str
-    user_pass: str
+class UserRequest(BaseModel):
+    username: str
+    password: str
 
 
-class UserDetail(BaseModel):
+class User(BaseModel):
+    username: str | None = None
+    language: List[str] | None = None
+    first_primary: str | None = None
+    middle_primary: str | None = None
+    last_primary: str | None = None
+    first_secondary: str | None = None
+    middle_secondary: str | None = None
+    last_secondary: str | None = None
+    first_tertiary: str | None = None
+    middle_tertiary: str | None = None
+    last_tertiary: str | None = None
+    employee_no: str | None = None
+    shift_name: str | None = None
+    line_id: int | None = None
+    line_id_group: List[int | None] = List[None]
+    tel_no_primary: str | None = None
+    tel_no_secondary: str | None = None
+    email: str | None = None
+    email_supervisor: str | None = None
+    email_manager: str | None = None
+
+
+class UserRegister(User):
+    password: str
+    is_admin: bool
+
+
+class UserDetail(User):
     user_uuid: str
-    user_id: str
-    firstname: Optional[str]
-    lastname: Optional[str]
-    email: Optional[EmailStr]
-    app_line_id: Optional[str] = ""
-    position_id: Optional[int]
-    position_name: Optional[str]
-    position_group: Optional[str]
-    section_code: Optional[int]
-    concern_line: Optional[List[int]] = []
-    main_line: Optional[int] = 0
-    shift: str = None
-    is_active: bool = True
-    is_admin: bool = False
-    created_at: Optional[datetime.datetime]
-    updated_at: Optional[datetime.datetime]
-    supervisor_email: Optional[EmailStr]
-    manager_email: Optional[EmailStr]
-    access_token: str = ""
-    refresh_token: str = ""
-    token_type: str = "Bearer"
+    is_admin: bool
+    created_at: datetime.datetime
+    updated_at: datetime.datetime
 
 
-class AllUsersResponse(BaseModel):
-    users: List[UserDetail]
+class UserResponse(UserDetail):
+    access_token: str | None = None
+    refresh_token: str | None = None
+    token_type: str | None = "Bearer"
+
+
+class UsersResponse(BaseModel):
+    users: List[UserResponse]
+
+
+class UserUpdateRequest(User):
+    user_uuid: str
+
+
+class UserPassRequest(BaseModel):
+    user_uuid: str
+    cur_pass: str | None = None
+    new_pass: str
 
 
 class Position(BaseModel):
     position_id: int
-    position_level: int
     position_name: str
-    position_full_name: str
+    position_shortname: str
+    position_level: str
     position_group: str
 
 
 class PositionResponse(BaseModel):
     positions: List[Position]
-
-
-class UserHandle(BaseModel):
-    user_id: str
-    user_pass: str = ""
-    firstname: str
-    lastname: str
-    email: Optional[EmailStr]
-    supervisor_email: Optional[EmailStr]
-    manager_email: Optional[EmailStr]
-    app_line_id: Optional[str] = ""
-    position_id: int
-    section_code: int
-    concern_line: Optional[List[int]] = []
-    main_line: Optional[int] = 0
-    shift: str = "N"
-    is_active: bool = True
-    is_admin: bool = False
-
-
-class UserUpdate(UserHandle):
-    user_uuid: str
-
-
-class UserCreate(UserHandle):
-    user_uuid: str
-    created_at: str
-
-
-class UserPasswordChange(BaseModel):
-    user_uuid: str
-    current_password: str
-    new_password: str

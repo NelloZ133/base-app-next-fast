@@ -1,19 +1,16 @@
-from typing import Any, List
 import asyncpg.pgproto.pgproto as pgproto
-from fastapi.security import APIKeyHeader
-from fastapi import Depends, HTTPException
-from starlette import status
-from datetime import datetime, tzinfo
-import pytz
 import os
+import pytz
+from datetime import datetime
+from fastapi import Depends, HTTPException
+from fastapi.security import APIKeyHeader
+from starlette import status
+from typing import Any, List
 from dotenv import load_dotenv
 
 load_dotenv()
-
-# load config from .env to get X-API-KEY list
 X_API_KEY = APIKeyHeader(name="X-API-Key")
 API_KEY = os.environ.get("API_KEY")
-# API_KEY = "YOUR_API_KEY"
 
 
 def toArray(input: Any) -> List:
@@ -27,14 +24,18 @@ def toArrayWithKey(input: Any, except_column: List[str] = []) -> list:
     # query with raw statement
     rs = [
         {
-            c: str(getattr(r, c))
-            if isinstance(getattr(r, c), pgproto.UUID)
-            else getattr(r, c)
-            .replace(tzinfo=pytz.utc)
-            .astimezone(tz)
-            .strftime("%Y-%m-%d %H:%M:%S.%f")
-            if isinstance(getattr(r, c), datetime)
-            else getattr(r, c)
+            c: (
+                str(getattr(r, c))
+                if isinstance(getattr(r, c), pgproto.UUID)
+                else (
+                    getattr(r, c)
+                    .replace(tzinfo=pytz.utc)
+                    .astimezone(tz)
+                    .strftime("%Y-%m-%d %H:%M:%S.%f")
+                    if isinstance(getattr(r, c), datetime)
+                    else getattr(r, c)
+                )
+            )
             for c in r.keys()
             if c not in except_column
         }

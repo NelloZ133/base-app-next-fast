@@ -12,7 +12,7 @@ interface IProps {
   onCancel?: () => void;
 }
 
-export const SelectForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish, onCancel }: IProps) => {
+export const ForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish, onCancel }: IProps) => {
   const b = useTranslations("button");
   const c = useTranslations("component");
   const m = useTranslations("message");
@@ -50,10 +50,10 @@ export const SelectForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish
             });
           }}>
           <Form.Item
-            label={c("forgotPassword.label.username")}
-            name="user_id"
-            rules={[{ required: true, message: m("usernameRequired") }]}>
-            <Input placeholder={c("forgotPassword.placeholder.username")} />
+            label={c("forgotPassword.label.credential")}
+            name="credential"
+            rules={[{ required: true, message: m("credentialRequired") }]}>
+            <Input placeholder={c("forgotPassword.placeholder.credential")} />
           </Form.Item>
           <Form.Item>
             <Button
@@ -75,4 +75,4 @@ export const SelectForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish
   );
 };
 
-export default SelectForgotPasswordModal;
+export default ForgotPasswordModal;

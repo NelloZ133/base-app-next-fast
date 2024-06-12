@@ -10,16 +10,18 @@ export const UserSlice: StateCreator<IUserState> = (set, get) => ({
 
   username() {
     const user = get().user;
-    return user ? `${user.firstname} ${user.lastname[0]}.` : "Guest";
+    return user ? `${user.first_primary} ${user.last_primary?.[0]}.` : "Guest";
   },
 
   shortname() {
     const user = get().user;
-    return user ? `${onlyCapitalizeFirstLetter(user.firstname)} ${onlyCapitalizeFirstLetter(user.lastname)}` : "Guest";
+    return user
+      ? `${onlyCapitalizeFirstLetter(user.first_primary || "D")} ${onlyCapitalizeFirstLetter(user.last_primary || "S")}`
+      : "Guest";
   },
 
   isAdmin() {
-    return get().user?.is_active || false;
+    return get().user?.is_admin || false;
   },
 
   isLoggedIn() {

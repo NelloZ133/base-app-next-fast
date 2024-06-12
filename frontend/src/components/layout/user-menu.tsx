@@ -73,7 +73,7 @@ export const UserMenu: FC = () => {
                     fontSize: "0.75rem",
                     fontWeight: "500",
                   }}>
-                  {user?.position_id}
+                  {user?.employee_no}
                 </Typography>
               </div>
             </div>

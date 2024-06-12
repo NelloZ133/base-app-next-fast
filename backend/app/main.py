@@ -2,10 +2,10 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from utils.logger import get_logger
 
-from app.routers import users_routers
 from app.dependencies import get_common_pg_async_db, get_app_pg_async_db
+from app.routers import users_routers
+from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
 

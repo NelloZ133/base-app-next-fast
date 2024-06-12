@@ -1,15 +1,54 @@
 import axiosInstance from "@/lib/axios";
 import { UserStore } from "@/store";
-import { ILoginResponse, IForgotPasswordForm, IUserUpdateForm, UserUpdate, ChangePassword } from "@/types";
+import {
+  ILoginResponse,
+  IForgotPasswordForm,
+  IUserUpdateForm,
+  UserUpdate,
+  ChangePassword,
+  IUesrRegisterForm,
+  UserRegister,
+} from "@/types";
 
 export async function login(username: string, password: string): Promise<ILoginResponse> {
   const { setUser } = UserStore.getState();
   const body = {
-    user_id: username,
-    user_pass: password,
+    username: username,
+    password: password,
   };
   const { data } = await axiosInstance.post<ILoginResponse>(`users/login`, body);
   setUser(data);
+
+  return data;
+}
+
+export async function registerUesr(form: IUesrRegisterForm) {
+  const body: UserRegister = {
+    username: form.username,
+    password: form.password,
+    language: form.language,
+    first_primary: form.first_primary,
+    middle_primary: form.middle_primary,
+    last_primary: form.last_primary,
+    first_secondary: form.first_secondary,
+    middle_secondary: form.middle_secondary,
+    last_secondary: form.last_secondary,
+    first_tertiary: form.first_tertiary,
+    middle_tertiary: form.middle_tertiary,
+    last_tertiary: form.last_tertiary,
+    employee_no: form.employee_no,
+    shift_name: form.shift_name,
+    line_id: form.line_id,
+    line_id_group: form.line_id_group,
+    tel_no_primary: form.tel_no_primary,
+    tel_no_secondary: form.tel_no_secondary,
+    email: form.email,
+    email_supervisor: form.email_supervisor,
+    email_manager: form.email_manager,
+    is_admin: form.is_admin || false,
+  };
+
+  const { data } = await axiosInstance.post<any>(`users/register`, body);
 
   return data;
 }
@@ -20,25 +59,28 @@ export async function updateUser(form: IUserUpdateForm): Promise<any> {
     return;
   }
 
-  const concernLine = form.concern_line.map((line) => line.value as number);
-
   const body: UserUpdate = {
+    username: form.username,
+    language: form.language,
+    first_primary: form.first_primary,
+    middle_primary: form.middle_primary,
+    last_primary: form.last_primary,
+    first_secondary: form.first_secondary,
+    middle_secondary: form.middle_secondary,
+    last_secondary: form.last_secondary,
+    first_tertiary: form.first_tertiary,
+    middle_tertiary: form.middle_tertiary,
+    last_tertiary: form.last_tertiary,
+    employee_no: form.employee_no,
+    shift_name: form.shift_name,
+    line_id: form.line_id,
+    line_id_group: form.line_id_group,
+    tel_no_primary: form.tel_no_primary,
+    tel_no_secondary: form.tel_no_secondary,
+    email: form.email,
+    email_supervisor: form.email_supervisor,
+    email_manager: form.email_manager,
     user_uuid: user.user_uuid,
-    user_id: user.user_id,
-    user_pass: "",
-    firstname: form.firstname,
-    lastname: form.lastname,
-    email: form.email || null,
-    supervisor_email: form.supervisor_email || null,
-    manager_email: form.manager_email || null,
-    position_id: form.position_id.value as number,
-    section_code: form.section_code.value as number,
-    concern_line: concernLine,
-    main_line: form.main_line?.value as number,
-    shift: form.shift,
-    app_line_id: "",
-    is_active: true,
-    is_admin: user.is_admin,
   };
 
   const { data } = await axiosInstance.post<any>(`users/update_user`, body);
@@ -47,15 +89,15 @@ export async function updateUser(form: IUserUpdateForm): Promise<any> {
   return data;
 }
 
-export async function changePassword(current_pass: string, new_pass: string): Promise<any> {
+export async function changePassword(cur_pass: string, new_pass: string): Promise<any> {
   const { user } = UserStore.getState();
   if (!user) {
     return;
   }
   const body: ChangePassword = {
     user_uuid: user.user_uuid,
-    current_password: current_pass,
-    new_password: new_pass,
+    cur_pass: cur_pass,
+    new_pass: new_pass,
   };
   const { data } = await axiosInstance.post<any>(`users/change_password`, body);
 
@@ -63,12 +105,9 @@ export async function changePassword(current_pass: string, new_pass: string): Pr
 }
 
 export async function forgotPassword(form: IForgotPasswordForm): Promise<any> {
-  const params: IForgotPasswordForm = {
-    user_id: form.user_id,
-  };
   const { data } = await axiosInstance.post<any>(`users/reset_password`, null, {
     params: {
-      user_id: params.user_id,
+      credential: form.credential,
     },
   });
 
@@ -76,12 +115,9 @@ export async function forgotPassword(form: IForgotPasswordForm): Promise<any> {
 }
 
 export async function resetPassword(form: IForgotPasswordForm): Promise<any> {
-  const params: IForgotPasswordForm = {
-    user_id: form.user_id,
-  };
-  const { data } = await axiosInstance.post<any>(`users/reset_default_password`, null, {
+  const { data } = await axiosInstance.post<any>(`users/reset_password_to_default`, null, {
     params: {
-      user_id: params.user_id,
+      username: form.credential,
     },
   });
 

@@ -37,10 +37,10 @@
   "component": {
     "forgotPassword": {
       "label": {
-        "username": "Username"
+        "credential": "Username/Email"
       },
       "placeholder": {
-        "username": "Enter the username you want to reset password"
+        "credential": "Enter the username or email you want to reset password"
       }
     },
     "userMenu": {
@@ -74,6 +74,7 @@
     "yes": "Yes"
   },
   "message": {
+    "credentialRequired": "Username or email is required",
     "fieldRequired": "Field is required",
     "passwordRequired": "Password is required",
     "usernameRequired": "Username is required"

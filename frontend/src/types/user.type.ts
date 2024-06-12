@@ -1,76 +1,143 @@
-import { ValueType } from "./common.type";
-
-export interface ILoginResponse extends User {
-  access_token: string;
-}
+export interface ILoginResponse extends User {}
 
 export type User = {
-  user_uuid: string;
-  user_id: string;
-  firstname: string;
-  lastname: string;
+  username: string;
+  language: string[] | null;
+  first_primary: string | null;
+  middle_primary: string | null;
+  last_primary: string | null;
+  first_secondary: string | null;
+  middle_secondary: string | null;
+  last_secondary: string | null;
+  first_tertiary: string | null;
+  middle_tertiary: string | null;
+  last_tertiary: string | null;
+  employee_no: string | null;
+  shift_name: string | null;
+  line_id: number | null;
+  line_id_group: number[] | null;
+  tel_no_primary: string | null;
+  tel_no_secondary: string | null;
   email: string | null;
-  supervisor_email: string | null;
-  manager_email: string | null;
-  position_id: number;
-  section_code: number;
-  concern_line: number[];
-  main_line: number;
-  shift: string;
-  created_at: string;
-  updated_at: string;
-  is_active: boolean;
+  email_supervisor: string | null;
+  email_manager: string | null;
+  user_uuid: string;
   is_admin: boolean;
-  access_token: string;
-  refresh_token: string;
-  token_type: string;
+  created_at: Date;
+  updated_at: Date;
+  access_token: string | null;
+  refresh_token: string | null;
+  token_type: string | null;
 };
 
 export interface IForgotPasswordForm {
-  user_id: string;
+  credential: string;
 }
 
 export interface IChangePasswordForm {
-  current_pass: string;
+  cur_pass: string;
   new_pass: string;
 }
 
+export interface IUesrRegisterForm {
+  username: string;
+  password: string;
+  language: string[] | null;
+  first_primary: string | null;
+  middle_primary: string | null;
+  last_primary: string | null;
+  first_secondary: string | null;
+  middle_secondary: string | null;
+  last_secondary: string | null;
+  first_tertiary: string | null;
+  middle_tertiary: string | null;
+  last_tertiary: string | null;
+  employee_no: string | null;
+  shift_name: string | null;
+  line_id: number | null;
+  line_id_group: number[] | null;
+  tel_no_primary: string | null;
+  tel_no_secondary: string | null;
+  email: string | null;
+  email_supervisor: string | null;
+  email_manager: string | null;
+  is_admin: boolean;
+}
+
+export type UserRegister = {
+  username: string;
+  password: string;
+  language: string[] | null;
+  first_primary: string | null;
+  middle_primary: string | null;
+  last_primary: string | null;
+  first_secondary: string | null;
+  middle_secondary: string | null;
+  last_secondary: string | null;
+  first_tertiary: string | null;
+  middle_tertiary: string | null;
+  last_tertiary: string | null;
+  employee_no: string | null;
+  shift_name: string | null;
+  line_id: number | null;
+  line_id_group: number[] | null;
+  tel_no_primary: string | null;
+  tel_no_secondary: string | null;
+  email: string | null;
+  email_supervisor: string | null;
+  email_manager: string | null;
+  is_admin: boolean;
+};
+
 export interface IUserUpdateForm {
-  user_id: string;
-  user_uuid: string;
-  firstname: string;
-  lastname: string;
-  email?: string | null;
-  supervisor_email?: string | null;
-  manager_email?: string | null;
-  position_id: ValueType;
-  section_code: ValueType;
-  concern_line: ValueType[];
-  main_line?: ValueType;
-  shift: string;
+  username: string;
+  language: string[] | null;
+  first_primary: string | null;
+  middle_primary: string | null;
+  last_primary: string | null;
+  first_secondary: string | null;
+  middle_secondary: string | null;
+  last_secondary: string | null;
+  first_tertiary: string | null;
+  middle_tertiary: string | null;
+  last_tertiary: string | null;
+  employee_no: string | null;
+  shift_name: string | null;
+  line_id: number | null;
+  line_id_group: number[] | null;
+  tel_no_primary: string | null;
+  tel_no_secondary: string | null;
+  email: string | null;
+  email_supervisor: string | null;
+  email_manager: string | null;
 }
 
 export type UserUpdate = {
+  username: string;
+  language: string[] | null;
+  first_primary: string | null;
+  middle_primary: string | null;
+  last_primary: string | null;
+  first_secondary: string | null;
+  middle_secondary: string | null;
+  last_secondary: string | null;
+  first_tertiary: string | null;
+  middle_tertiary: string | null;
+  last_tertiary: string | null;
+  employee_no: string | null;
+  shift_name: string | null;
+  line_id: number | null;
+  line_id_group: number[] | null;
+  tel_no_primary: string | null;
+  tel_no_secondary: string | null;
+  email: string | null;
+  email_supervisor: string | null;
+  email_manager: string | null;
   user_uuid: string;
-  user_id: string;
-  user_pass: string;
-  firstname: string;
-  lastname: string;
-  email?: string | null;
-  supervisor_email?: string | null;
-  manager_email?: string | null;
-  app_line_id?: string;
-  position_id: number;
-  section_code: number;
-  concern_line: number[];
-  main_line?: number | null;
-  shift: string;
-  is_active: boolean;
-  is_admin: boolean;
 };
 
 export type ChangePassword = {
   user_uuid: string;
-  current_password: string;
-  new_password: string;
+  cur_pass: string;
+  new_pass: string;
 };

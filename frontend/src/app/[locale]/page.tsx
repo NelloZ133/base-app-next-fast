@@ -1,12 +1,12 @@
 "use client";
-import { useEffect } from "react";
-import { useTranslations } from "next-intl";
 import { ConfigProvider, Layout, Typography, theme } from "antd";
 import type { ThemeConfig } from "antd";
+import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 const { Content } = Layout;
 
-import { LayoutStore, ModeStore } from "@/store";
 import { Link } from "@/navigation";
+import { LayoutStore, ModeStore } from "@/store";
 
 import { Noto_Sans_Thai } from "next/font/google";
 const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });

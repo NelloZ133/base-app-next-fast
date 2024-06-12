@@ -22,7 +22,7 @@ def send_mail(
     reciever: Union[str, list],
     subject: str,
     content: str,
-    attachments: List[str],
+    attachments: List[str] | None = None,
     sender: str = sender_email,
 ) -> None:
     # Create message container - the correct MIME type is multipart/alternative.
@@ -42,15 +42,16 @@ def send_mail(
     part1 = MIMEText(content, "html")
     msg.attach(part1)
 
-    for f in attachments:
-        f = f.rsplit("/", 1)[-1]
-        f = os.path.join("uploaded_files", f)
-        if not os.path.exists(f):
-            continue
-        with open(f, "rb") as fil:
-            part = MIMEApplication(fil.read(), Name=basename(f))
-        part["Content-Disposition"] = 'attachment; filename="%s"' % basename(f)
-        msg.attach(part)
+    if attachments:
+        for f in attachments:
+            f = f.rsplit("/", 1)[-1]
+            f = os.path.join("uploaded_files", f)
+            if not os.path.exists(f):
+                continue
+            with open(f, "rb") as fil:
+                part = MIMEApplication(fil.read(), Name=basename(f))
+            part["Content-Disposition"] = 'attachment; filename="%s"' % basename(f)
+            msg.attach(part)
 
     with smtplib.SMTP(smtp_server, int(smtp_port)) as server:
         if len(smtp_username) > 0:

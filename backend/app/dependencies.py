@@ -1,7 +1,7 @@
-from typing import AsyncGenerator
-from .database import app_pg_async_session, common_pg_async_session
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
+from typing import AsyncGenerator
+from .database import app_pg_async_session, common_pg_async_session
 
 
 async def get_app_pg_async_db():
