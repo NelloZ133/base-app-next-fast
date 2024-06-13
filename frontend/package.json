@@ -14,13 +14,13 @@
     "@ant-design/icons": "5.3.7",
     "@types/lodash": "4.17.4",
     "@types/lodash-es": "4.17.12",
-    "antd": "5.17.3",
+    "antd": "5.18.1",
     "axios": "0.28.1",
     "dayjs": "1.11.11",
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
-    "next": "14.2.3",
-    "next-intl": "3.14.1",
+    "next": "14.2.4",
+    "next-intl": "3.15.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-icons": "5.2.1",
@@ -28,11 +28,11 @@
     "zustand": "4.5.2"
   },
   "devDependencies": {
-    "@types/node": "20.12.12",
+    "@types/node": "20.14.2",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "eslint": "9.3.0",
-    "eslint-config-next": "14.2.3",
+    "eslint": "9.4.0",
+    "eslint-config-next": "14.2.4",
     "typescript": "5.4.5"
   }
 }

@@ -1,4 +1,4 @@
-import { Form, Modal, Input, Button } from "antd";
+import { Form, Modal, Input, Button, Space } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { FC, Fragment, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -56,18 +56,20 @@ export const ForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish, onCa
             <Input placeholder={c("forgotPassword.placeholder.credential")} />
           </Form.Item>
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="reset"
-              onClick={() => {
-                form.resetFields();
-              }}
-              danger>
-              {b("reset")}
-            </Button>
-            <Button type="primary" htmlType="submit">
-              {b("submit")}
-            </Button>
+            <Space style={{ display: "flex", justifyContent: "end" }}>
+              <Button
+                type="primary"
+                htmlType="reset"
+                onClick={() => {
+                  form.resetFields();
+                }}
+                danger>
+                {b("reset")}
+              </Button>
+              <Button type="primary" htmlType="submit">
+                {b("submit")}
+              </Button>
+            </Space>
           </Form.Item>
         </Form>
       </Modal>
