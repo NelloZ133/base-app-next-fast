@@ -5,7 +5,7 @@ ARG TARGETPLATFORM
 
 COPY . /code
 WORKDIR /code
-COPY requirements.txt .
+COPY ./requirements.txt /code/requirements.txt
 
 RUN \
   ARCH=$(case ${TARGETPLATFORM:-linux/amd64} in \

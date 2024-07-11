@@ -13,7 +13,6 @@ from typing import List
 
 from app.crud import UsersCRUD
 from app.schemas.users import (
-    Position,
     UserRegister,
     UserRequest,
     UserUpdateRequest,
@@ -30,7 +29,7 @@ BACKEND_BASE_URL = os.environ.get("BACKEND_BASE_URL")
 logger = get_logger(__name__)
 
 
-class UserManager:
+class UsersManager:
     def __init__(self):
         self.password_manager = PasswordManager()
         self.crud = UsersCRUD()
@@ -65,6 +64,21 @@ class UserManager:
                         email=r[key_index["email"]],
                         email_supervisor=r[key_index["email_supervisor"]],
                         email_manager=r[key_index["email_manager"]],
+                        position_id=r[key_index["position_id"]],
+                        position_name=r[key_index["position_name"]],
+                        position_shortname=r[key_index["position_shortname"]],
+                        position_level=str(r[key_index["position_level"]]),
+                        position_group=r[key_index["position_group"]],
+                        section_id=r[key_index["section_id"]],
+                        section_code=str(r[key_index["section_code"]]),
+                        section_name=r[key_index["section_name"]],
+                        sub_section_name=r[key_index["sub_section_name"]],
+                        department=r[key_index["department"]],
+                        sub_department=r[key_index["sub_department"]],
+                        division=r[key_index["division"]],
+                        company=r[key_index["company"]],
+                        plant=r[key_index["plant"]],
+                        group_type=r[key_index["group_type"]],
                         is_admin=r[key_index["is_admin"]],
                         created_at=r[key_index["created_at"]],
                         updated_at=r[key_index["updated_at"]],
@@ -121,6 +135,21 @@ class UserManager:
                         email=r[key_index["email"]],
                         email_supervisor=r[key_index["email_supervisor"]],
                         email_manager=r[key_index["email_manager"]],
+                        position_id=r[key_index["position_id"]],
+                        position_name=r[key_index["position_name"]],
+                        position_shortname=r[key_index["position_shortname"]],
+                        position_level=str(r[key_index["position_level"]]),
+                        position_group=r[key_index["position_group"]],
+                        section_id=r[key_index["section_id"]],
+                        section_code=str(r[key_index["section_code"]]),
+                        section_name=r[key_index["section_name"]],
+                        sub_section_name=r[key_index["sub_section_name"]],
+                        department=r[key_index["department"]],
+                        sub_department=r[key_index["sub_department"]],
+                        division=r[key_index["division"]],
+                        company=r[key_index["company"]],
+                        plant=r[key_index["plant"]],
+                        group_type=r[key_index["group_type"]],
                         is_admin=r[key_index["is_admin"]],
                         created_at=r[key_index["created_at"]],
                         updated_at=r[key_index["updated_at"]],
@@ -174,6 +203,21 @@ class UserManager:
                         email=r[key_index["email"]],
                         email_supervisor=r[key_index["email_supervisor"]],
                         email_manager=r[key_index["email_manager"]],
+                        position_id=r[key_index["position_id"]],
+                        position_name=r[key_index["position_name"]],
+                        position_shortname=r[key_index["position_shortname"]],
+                        position_level=str(r[key_index["position_level"]]),
+                        position_group=r[key_index["position_group"]],
+                        section_id=r[key_index["section_id"]],
+                        section_code=str(r[key_index["section_code"]]),
+                        section_name=r[key_index["section_name"]],
+                        sub_section_name=r[key_index["sub_section_name"]],
+                        department=r[key_index["department"]],
+                        sub_department=r[key_index["sub_department"]],
+                        division=r[key_index["division"]],
+                        company=r[key_index["company"]],
+                        plant=r[key_index["plant"]],
+                        group_type=r[key_index["group_type"]],
                         is_admin=r[key_index["is_admin"]],
                         created_at=r[key_index["created_at"]],
                         updated_at=r[key_index["updated_at"]],
@@ -229,6 +273,21 @@ class UserManager:
                 email=data[key_index["email"]],
                 email_supervisor=data[key_index["email_supervisor"]],
                 email_manager=data[key_index["email_manager"]],
+                position_id=data[key_index["position_id"]],
+                position_name=data[key_index["position_name"]],
+                position_shortname=data[key_index["position_shortname"]],
+                position_level=str(data[key_index["position_level"]]),
+                position_group=data[key_index["position_group"]],
+                section_id=data[key_index["section_id"]],
+                section_code=str(data[key_index["section_code"]]),
+                section_name=data[key_index["section_name"]],
+                sub_section_name=data[key_index["sub_section_name"]],
+                department=data[key_index["department"]],
+                sub_department=data[key_index["sub_department"]],
+                division=data[key_index["division"]],
+                company=data[key_index["company"]],
+                plant=data[key_index["plant"]],
+                group_type=data[key_index["group_type"]],
                 is_admin=data[key_index["is_admin"]],
                 created_at=data[key_index["created_at"]],
                 updated_at=data[key_index["updated_at"]],
@@ -278,6 +337,21 @@ class UserManager:
                 email=data[key_index["email"]],
                 email_supervisor=data[key_index["email_supervisor"]],
                 email_manager=data[key_index["email_manager"]],
+                position_id=data[key_index["position_id"]],
+                position_name=data[key_index["position_name"]],
+                position_shortname=data[key_index["position_shortname"]],
+                position_level=str(data[key_index["position_level"]]),
+                position_group=data[key_index["position_group"]],
+                section_id=data[key_index["section_id"]],
+                section_code=str(data[key_index["section_code"]]),
+                section_name=data[key_index["section_name"]],
+                sub_section_name=data[key_index["sub_section_name"]],
+                department=data[key_index["department"]],
+                sub_department=data[key_index["sub_department"]],
+                division=data[key_index["division"]],
+                company=data[key_index["company"]],
+                plant=data[key_index["plant"]],
+                group_type=data[key_index["group_type"]],
                 is_admin=data[key_index["is_admin"]],
                 created_at=data[key_index["created_at"]],
                 updated_at=data[key_index["updated_at"]],
@@ -329,6 +403,21 @@ class UserManager:
                 email=data[key_index["email"]],
                 email_supervisor=data[key_index["email_supervisor"]],
                 email_manager=data[key_index["email_manager"]],
+                position_id=data[key_index["position_id"]],
+                position_name=data[key_index["position_name"]],
+                position_shortname=data[key_index["position_shortname"]],
+                position_level=str(data[key_index["position_level"]]),
+                position_group=data[key_index["position_group"]],
+                section_id=data[key_index["section_id"]],
+                section_code=str(data[key_index["section_code"]]),
+                section_name=data[key_index["section_name"]],
+                sub_section_name=data[key_index["sub_section_name"]],
+                department=data[key_index["department"]],
+                sub_department=data[key_index["sub_department"]],
+                division=data[key_index["division"]],
+                company=data[key_index["company"]],
+                plant=data[key_index["plant"]],
+                group_type=data[key_index["group_type"]],
                 is_admin=data[key_index["is_admin"]],
                 created_at=data[key_index["created_at"]],
                 updated_at=data[key_index["updated_at"]],
@@ -380,6 +469,21 @@ class UserManager:
                 email=data[key_index["email"]],
                 email_supervisor=data[key_index["email_supervisor"]],
                 email_manager=data[key_index["email_manager"]],
+                position_id=data[key_index["position_id"]],
+                position_name=data[key_index["position_name"]],
+                position_shortname=data[key_index["position_shortname"]],
+                position_level=str(data[key_index["position_level"]]),
+                position_group=data[key_index["position_group"]],
+                section_id=data[key_index["section_id"]],
+                section_code=str(data[key_index["section_code"]]),
+                section_name=data[key_index["section_name"]],
+                sub_section_name=data[key_index["sub_section_name"]],
+                department=data[key_index["department"]],
+                sub_department=data[key_index["sub_department"]],
+                division=data[key_index["division"]],
+                company=data[key_index["company"]],
+                plant=data[key_index["plant"]],
+                group_type=data[key_index["group_type"]],
                 is_admin=data[key_index["is_admin"]],
                 created_at=data[key_index["created_at"]],
                 updated_at=data[key_index["updated_at"]],
@@ -429,6 +533,21 @@ class UserManager:
                 email=data[key_index["email"]],
                 email_supervisor=data[key_index["email_supervisor"]],
                 email_manager=data[key_index["email_manager"]],
+                position_id=data[key_index["position_id"]],
+                position_name=data[key_index["position_name"]],
+                position_shortname=data[key_index["position_shortname"]],
+                position_level=str(data[key_index["position_level"]]),
+                position_group=data[key_index["position_group"]],
+                section_id=data[key_index["section_id"]],
+                section_code=str(data[key_index["section_code"]]),
+                section_name=data[key_index["section_name"]],
+                sub_section_name=data[key_index["sub_section_name"]],
+                department=data[key_index["department"]],
+                sub_department=data[key_index["sub_department"]],
+                division=data[key_index["division"]],
+                company=data[key_index["company"]],
+                plant=data[key_index["plant"]],
+                group_type=data[key_index["group_type"]],
                 is_admin=data[key_index["is_admin"]],
                 created_at=data[key_index["created_at"]],
                 updated_at=data[key_index["updated_at"]],
@@ -440,32 +559,6 @@ class UserManager:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail=f"Unable to get users because {e}",
-            )
-
-    async def get_positions(self, db: AsyncSession = None):
-        res = await self.crud.get_positions(db=db)
-        return_list = []
-        try:
-            for r in res:
-                key_index = r._key_to_index
-                return_list.append(
-                    Position(
-                        position_id=r[key_index["position_id"]],
-                        position_name=r[key_index["position_name"]],
-                        position_shortname=r[key_index["position_shortname"]],
-                        position_level=r[key_index["position_level"]],
-                        position_group=r[key_index["position_group"]],
-                    )
-                )
-            if len(return_list) == 0:
-                raise HTTPException(
-                    status_code=status.HTTP_404_NOT_FOUND, detail="Position not found"
-                )
-            return return_list
-        except Exception as e:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Unable to get positions because {e}",
             )
 
     async def authenticate(self, user: UserRequest, db: AsyncSession = None):
@@ -595,6 +688,21 @@ class UserManager:
                 email=data[key_index["email"]],
                 email_supervisor=data[key_index["email_supervisor"]],
                 email_manager=data[key_index["email_manager"]],
+                position_id=data[key_index["position_id"]],
+                position_name=data[key_index["position_name"]],
+                position_shortname=data[key_index["position_shortname"]],
+                position_level=str(data[key_index["position_level"]]),
+                position_group=data[key_index["position_group"]],
+                section_id=data[key_index["section_id"]],
+                section_code=str(data[key_index["section_code"]]),
+                section_name=data[key_index["section_name"]],
+                sub_section_name=data[key_index["sub_section_name"]],
+                department=data[key_index["department"]],
+                sub_department=data[key_index["sub_department"]],
+                division=data[key_index["division"]],
+                company=data[key_index["company"]],
+                plant=data[key_index["plant"]],
+                group_type=data[key_index["group_type"]],
                 is_admin=data[key_index["is_admin"]],
                 created_at=data[key_index["created_at"]],
                 updated_at=data[key_index["updated_at"]],
@@ -678,9 +786,10 @@ class UserManager:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid request"
             )
-        where_stmt = f"WHERE username='{credential}' OR email='{credential}'"
+        where_stmt = f"AND (username='{credential}' OR email='{credential}') LIMIT 1"
         try:
-            existing = await self.crud.validate_register(where_stmt=where_stmt, db=db)
+            res = await self.crud.get_users(where_stmt=where_stmt, db=db)
+            existing = res.fetchone()
         except Exception as e:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
@@ -714,6 +823,21 @@ class UserManager:
             email=existing[key_index["email"]],
             email_supervisor=existing[key_index["email_supervisor"]],
             email_manager=existing[key_index["email_manager"]],
+            position_id=existing[key_index["position_id"]],
+            position_name=existing[key_index["position_name"]],
+            position_shortname=existing[key_index["position_shortname"]],
+            position_level=str(existing[key_index["position_level"]]),
+            position_group=existing[key_index["position_group"]],
+            section_id=existing[key_index["section_id"]],
+            section_code=str(existing[key_index["section_code"]]),
+            section_name=existing[key_index["section_name"]],
+            sub_section_name=existing[key_index["sub_section_name"]],
+            department=existing[key_index["department"]],
+            sub_department=existing[key_index["sub_department"]],
+            division=existing[key_index["division"]],
+            company=existing[key_index["company"]],
+            plant=existing[key_index["plant"]],
+            group_type=existing[key_index["group_type"]],
             is_admin=existing[key_index["is_admin"]],
             created_at=existing[key_index["created_at"]],
             updated_at=existing[key_index["updated_at"]],

@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from app.dependencies import get_common_pg_async_db, get_app_pg_async_db
-from app.routers import users_routers
+from app.routers import users_routers, settings_routers
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -22,7 +22,7 @@ app.add_middleware(
 )
 
 app.include_router(users_routers(get_common_pg_async_db), prefix="/api/users")
-# app.include_router(app_settings_routers(get_app_pg_async_db), prefix="/api/setting")
+app.include_router(settings_routers(get_app_pg_async_db), prefix="/api/settings")
 # app.include_router(app_search_routers(get_app_pg_async_db), prefix="/api/search")
 # app.include_router(app_routers(get_app_pg_async_db), prefix="/api/app")
 

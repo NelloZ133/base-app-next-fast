@@ -6,13 +6,14 @@ import { useEffect } from "react";
 const { Content } = Layout;
 
 import { Link } from "@/navigation";
-import { LayoutStore, ModeStore } from "@/store";
+import { LayoutStore, ModeStore, UserStore } from "@/store";
 
 import { Noto_Sans_Thai } from "next/font/google";
 const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
 
 const Home = () => {
   const { setHeaderTitle, setBackable, setBackTarget } = LayoutStore.getState();
+  const { loadUser } = UserStore.getState();
   const toggleMode = ModeStore((state) => state.toggleMode);
   const config: ThemeConfig = {
     token: {
@@ -27,6 +28,7 @@ const Home = () => {
   const l = useTranslations("layout");
 
   useEffect(() => {
+    loadUser();
     setHeaderTitle(l("header.home"));
     setBackable(false);
     setBackTarget(undefined);
@@ -40,13 +42,13 @@ const Home = () => {
         }}>
         <Content className="container">
           <Link href={"/"}>
-            <Typography.Title className="main-menu-item" level={1}>
-              {l("menu.main.topic1")}
+            <Typography.Title className="main-menu-item" level={1} disabled>
+              {l("menu.main.register")}
             </Typography.Title>
           </Link>
-          <Link href={"/"}>
+          <Link href={"/profile"}>
             <Typography.Title className="main-menu-item" level={1}>
-              {l("menu.main.topic2")}
+              {l("menu.main.profile")}
             </Typography.Title>
           </Link>
         </Content>

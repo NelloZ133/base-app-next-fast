@@ -3,20 +3,20 @@
     "header": {
       "home": "Home",
       "login": "Login",
-      "topic1": "Topic 1",
-      "topic2": "Topic 2"
+      "register": "Register",
+      "profile": "Profile"
     },
     "menu": {
       "main": {
-        "topic1": "Topic 1",
-        "topic2": "Topic 2"
+        "register": "Register",
+        "profile": "Profile"
       },
       "side": {
         "home": "Home",
-        "mainTopic": "Main Topic",
+        "user": "Main Topic",
         "menu": "Menu",
-        "topic1": "Topic 1",
-        "topic2": "Topic 2"
+        "register": "Register",
+        "profile": "Profile"
       }
     }
   },
@@ -32,9 +32,68 @@
         "resetPassword": "Reset password",
         "username": "Username"
       }
+    },
+    "profile": {
+      "title": {
+        "changePassword": "Change password"
+      },
+      "tooltip": {
+        "changePassword": "Change password",
+        "changePasswordDisable": "Please insert your email or supervisor email before changed",
+        "editUserInfo": "Edit user info"
+      }
     }
   },
   "component": {
+    "adminAuthorization": {
+      "title": "Administrator authorization",
+      "placeholder": "Type admin key..."
+    },
+    "changePassword": {
+      "label": {
+        "confirmNewPassword": "Confirm new password",
+        "currentPassword": "Current password",
+        "newPassword": "New password"
+      },
+      "placeholder": {
+        "confirmNewPassword": "Please input the same as new password",
+        "currentPassword": "Enter your current password",
+        "newPassword": "Enter your new password"
+      }
+    },
+    "editUser": {
+      "label": {
+        "username": "Username",
+        "employeeNo": "Employee No.",
+        "position": "Position",
+        "language": "Language Setting",
+        "workingShift": "Working Shift",
+        "firstPrimary": "Firstname (English)",
+        "middlePrimary": "Middle (English)",
+        "lastPrimary": "Lastname (English)",
+        "firstSecondary": "Firstname (Thai)",
+        "middleSecondary": "Middle (Thai)",
+        "lastSecondary": "Lastname (Thai)",
+        "firstTertiary": "Firstname (Japanese)",
+        "middleTertiary": "Middle (Japanese)",
+        "lastTertiary": "Lastname (Japanese)",
+        "email": "Email",
+        "emailSupervisor": "Supervisor Email",
+        "emailManager": "Manager Email",
+        "section": "Section",
+        "mainLine": "Main Line",
+        "concernLine": "Concern Line",
+        "telNoPrimary": "Tel. No.",
+        "telNoSecondary": "Tel. No. (ฺBack up)",
+        "resetConfirm": "Confirm to reset?"
+      },
+      "description": {
+        "resetConfirm": "This is irreversible action. Do you confirm?"
+      },
+      "tooltip": {
+        "language": "Please select your preferred language sequentially"
+      }
+    },
     "forgotPassword": {
       "label": {
         "credential": "Username/Email"
@@ -75,9 +134,14 @@
   },
   "message": {
     "credentialRequired": "Username or email is required",
+    "emailRequired": "Please insert your email or supervisor email",
     "fieldRequired": "Field is required",
     "passwordRequired": "Password is required",
-    "usernameRequired": "Username is required"
+    "updateUserFailure": "Updated user failed",
+    "updateUserSuccess": "Updated user information successfully",
+    "userNotFound": "User data not found",
+    "usernameRequired": "Username is required",
+    "wrongAdminKey": "Wrong admin key"
   },
   "LocaleSwitcher": {
     "label": "Change language",

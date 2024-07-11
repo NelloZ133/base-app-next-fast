@@ -1,3 +1,4 @@
+"use client"
 import { Fragment, FC, useEffect } from "react";
 
 import { useRouter } from "@/navigation";
@@ -9,7 +10,7 @@ interface IProps {
 
 export const NeedAuthorization: FC<IProps> = ({ children }) => {
   const router = useRouter();
-  const { isLoggedIn } = UserStore();
+  const isLoggedIn = UserStore((state) => state.isLoggedIn);
   const loadUser = UserStore((state) => state.loadUser);
   const setIsLoading = LayoutStore((state) => state.setIsLoading);
 

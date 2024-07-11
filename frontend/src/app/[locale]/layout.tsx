@@ -11,7 +11,7 @@ import Loading from "./loading";
 export const metadata: Metadata = {
   title: "Base App Next-Fast",
   description: "Powered by JI & DX",
-  icons: "../favicon.ico",
+  icons: "@/app/favicon.ico",
 };
 
 const LocaleLayout = async ({

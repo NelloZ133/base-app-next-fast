@@ -2,6 +2,10 @@ export interface IStringKey {
   [key: string]: any;
 }
 
+export interface OptionValue extends ValueType {
+  disabled?: boolean;
+}
+
 export interface ValueType {
   key?: string;
   label: string | React.ReactNode;

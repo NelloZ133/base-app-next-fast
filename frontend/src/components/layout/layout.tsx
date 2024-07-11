@@ -19,7 +19,7 @@ export const LayoutCustom = ({ children }: { children: React.ReactNode }) => {
   const b = useTranslations("button");
   const l = useTranslations("layout");
 
-  const { isLoggedIn } = UserStore();
+  const isLoggedIn = UserStore((state) => state.isLoggedIn);
 
   const toggleMode = ModeStore((state) => state.toggleMode);
   const {
@@ -68,7 +68,7 @@ export const LayoutCustom = ({ children }: { children: React.ReactNode }) => {
             </Sider>
           )}
 
-          <Content className="main-content">{children}</Content>
+          {children}
         </Layout>
       </div>
     </ConfigProvider>

@@ -3,20 +3,20 @@
     "header": {
       "home": "หน้าหลัก",
       "login": "ลงชื่อเข้าใช้",
-      "topic1": "หัวข้อ 1",
-      "topic2": "หัวข้อ 2"
+      "register": "ลงทะเบียน",
+      "profile": "จัดการผู้ใช้"
     },
     "menu": {
       "main": {
-        "topic1": "หัวข้อ 1",
-        "topic2": "หัวข้อ 2"
+        "register": "ลงทะเบียน",
+        "profile": "จัดการผู้ใช้"
       },
       "side": {
         "home": "หน้าหลัก",
-        "mainTopic": "หัวข้อหลัก",
+        "user": "หัวข้อหลัก",
         "menu": "เมนู",
-        "topic1": "หัวข้อ 1",
-        "topic2": "หัวข้อ 2"
+        "register": "ลงทะเบียน",
+        "profile": "จัดการผู้ใช้"
       }
     }
   },
@@ -32,9 +32,68 @@
         "resetPassword": "ล้างรหัสผ่าน",
         "username": "ชื่อผู้ใช้"
       }
+    },
+    "profile": {
+      "title": {
+        "changePassword": "เปลี่ยนรหัสผ่าน"
+      },
+      "tooltip": {
+        "changePassword": "เปลี่ยนรหัสผ่าน",
+        "changePasswordDisable": "กรุณาเพิ่มอีเมลของท่านหรือผู้บังคับบัญชาก่อนเปลี่ยนรหัสผ่าน",
+        "editUserInfo": "แก้ไขข้อมูลผู้ใช้"
+      }
     }
   },
   "component": {
+    "adminAuthorization": {
+      "title": "ยืนยันสิทธิ์แอดมิน",
+      "placeholder": "ใส่รหัสแอดมิน..."
+    },
+    "changePassword": {
+      "label": {
+        "confirmNewPassword": "ยืนยันรหัสผ่าน",
+        "currentPassword": "รหัสผ่านปัจจุบัน",
+        "newPassword": "รหัสผ่านใหม่"
+      },
+      "placeholder": {
+        "confirmNewPassword": "กรุณาใส่รหัสผ่านให้ตรงกัน",
+        "currentPassword": "กรุณาใส่รหัสผ่านปัจจุบัน",
+        "newPassword": "กรุณาใส่รหัสผ่านใหม่"
+      }
+    },
+    "editUser": {
+      "label": {
+        "username": "ชื่อผู้ใช้",
+        "employeeNo": "รหัสพนักงาน",
+        "position": "ตำแหน่ง",
+        "language": "ตั้งค่าภาษา",
+        "workingShift": "กะการทำงาน",
+        "firstPrimary": "ชื่อ (ภาษาอังกฤษ)",
+        "middlePrimary": "ชื่อกลาง (ภาษาอังกฤษ)",
+        "lastPrimary": "นามสกุล (ภาษาอังกฤษ)",
+        "firstSecondary": "ชื่อ (ภาษาไทย)",
+        "middleSecondary": "ชื่อกลาง (ภาษาไทย)",
+        "lastSecondary": "นามสกุล (ภาษาไทย)",
+        "firstTertiary": "ชื่อ (ภาษาญี่ปุ่น)",
+        "middleTertiary": "ชื่อกลาง (ภาษาญี่ปุ่น)",
+        "lastTertiary": "นามสกุล (ภาษาญี่ปุ่น)",
+        "email": "อีเมล",
+        "emailSupervisor": "อีเมลผู้บังคับบัญชา",
+        "emailManager": "อีเมลผู้จัดการ",
+        "section": "แผนก",
+        "mainLine": "ไลน์หลัก",
+        "concernLine": "ไลน์ที่ดูแล",
+        "telNoPrimary": "โทรศัพท์",
+        "telNoSecondary": "โทรศัพท์ (สำรอง)",
+        "resetConfirm": "ยืนยันว่าต้องการคืนค่าหรือไม่?"
+      },
+      "description": {
+        "resetConfirm": "ข้อมูลจะกลับไปสู่ค่าเริ่มต้น ท่านต้องการยืนยันหรือไม่?"
+      },
+      "tooltip": {
+        "language": "กรุณาเลือกภาษาที่ต้องการตามลำดับ"
+      }
+    },
     "forgotPassword": {
       "label": {
         "credential": "ชื่อผู้ใช้/อีเมล"
@@ -75,9 +134,14 @@
   },
   "message": {
     "credentialRequired": "กรุณาใส่ชื่อผู้ใช้หรืออีเมล",
+    "emailRequired": "กรุณาใส่อีเมลของท่านหรือผู้บังคับบัญชา",
     "fieldRequired": "กรุณาใส่ข้อมูล",
     "passwordRequired": "กรุณาใส่รหัสผ่าน",
-    "usernameRequired": "กรุณาใส่ชื่อผู้ใช้"
+    "updateUserFailure": "แก้ไขข้อมูลผู้ใช้ไม่สำเร็จ",
+    "updateUserSuccess": "แก้ไขข้อมูลผู้ใช้สำเร็จ",
+    "userNotFound": "ไม่พบข้อมูลผู้ใช้",
+    "usernameRequired": "กรุณาใส่ชื่อผู้ใช้",
+    "wrongAdminKey": "รหัสแอดมินผิด"
   },
   "LocaleSwitcher": {
     "label": "เปลี่ยนภาษา",

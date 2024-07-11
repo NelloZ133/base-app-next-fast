@@ -3,6 +3,7 @@ import type { SelectProps } from "antd/es/select";
 import debounce from "lodash/debounce";
 import { Fragment, useEffect, useState } from "react";
 import { TbMoodConfuzed } from "react-icons/tb";
+
 import { ModeStore } from "@/store";
 
 const { Text } = Typography;
@@ -18,15 +19,15 @@ interface IDebounceSelectProps<T = any> extends Omit<SelectProps<T | T[] | strin
   pathSearch?: string;
   enableNewItem?: boolean;
   maxCount?: number;
-  initialValue?: string[] | string;
+  initialValue?: any[] | any;
   disabled?: boolean;
 }
 
-const DebounceSelect = <
+export const DebounceSelect = <
   T extends {
     key?: string;
     label: React.ReactNode;
-    value: string | number;
+    value: any;
     disabled?: boolean;
   }
 >({
@@ -118,9 +119,9 @@ const DebounceSelect = <
         ];
         //* filter duplicated value
         filteredDuplicateOptions = filteredDuplicateOptions.filter((opt) => {
-          const val = opt.value;
+          const val = opt?.value || null;
           return (
-            filteredDuplicateOptions.findIndex((option) => option.value === val) ===
+            filteredDuplicateOptions.findIndex((option) => option?.value === val) ===
             filteredDuplicateOptions.indexOf(opt)
           );
         });
@@ -146,13 +147,13 @@ const DebounceSelect = <
       .finally(() => setFetching(false));
   };
 
-  const onSelect = () => {
-    if (defaultLoadOption) {
-      loadOptions("");
-    } else {
-      setOptions([]);
-    }
-  };
+  // const onSelect = () => {
+  //   if (defaultLoadOption) {
+  //     loadOptions("");
+  //   } else {
+  //     setOptions([]);
+  //   }
+  // };
 
   useEffect(() => {
     if (!defaultLoadOption && defaultLoadValue === "") return;

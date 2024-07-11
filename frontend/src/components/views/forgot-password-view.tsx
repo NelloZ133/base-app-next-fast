@@ -1,7 +1,7 @@
 import { Form, Modal, Input, Button, Space } from "antd";
 import { useForm } from "antd/lib/form/Form";
-import { FC, Fragment, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { FC, Fragment, useEffect } from "react";
 
 import { IForgotPasswordForm } from "@/types";
 
@@ -12,7 +12,7 @@ interface IProps {
   onCancel?: () => void;
 }
 
-export const ForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish, onCancel }: IProps) => {
+export const ForgotPasswordView: FC<IProps> = ({ title, visible, onFinish, onCancel }) => {
   const b = useTranslations("button");
   const c = useTranslations("component");
   const m = useTranslations("message");
@@ -77,4 +77,4 @@ export const ForgotPasswordModal: FC<IProps> = ({ title, visible, onFinish, onCa
   );
 };
 
-export default ForgotPasswordModal;
+export default ForgotPasswordView;

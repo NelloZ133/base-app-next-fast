@@ -20,7 +20,7 @@ const LocaleSwitcher = () => {
 
   const { queryParamsUrl } = ModeStore();
 
-  function onSelectChange(value: string) {
+  function onSelectChange(value: any) {
     startTransition(() => {
       // router.replace(pathname, { locale: value }); //*original
       router.replace(`/${pathname}${queryParamsUrl}`, { locale: value });
@@ -33,7 +33,7 @@ const LocaleSwitcher = () => {
         defaultValue={locale}
         disabled={isPending}
         onChange={onSelectChange}
-        style={{ fontFamily: notoTH.style.fontFamily, }}>
+        style={{ fontFamily: notoTH.style.fontFamily }}>
         {locales.map((cur) => (
           <Option key={cur} value={cur}>
             {t("locale", { locale: cur })}

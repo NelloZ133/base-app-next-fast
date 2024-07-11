@@ -1,28 +1,26 @@
 import axiosInstance from "@/lib/axios";
-import { UserStore } from "@/store";
 import {
   ILoginResponse,
   IForgotPasswordForm,
   IUserUpdateForm,
   UserUpdate,
   ChangePassword,
-  IUesrRegisterForm,
+  IUserRegisterForm,
   UserRegister,
+  ILoginForm,
+  IChangePasswordForm,
 } from "@/types";
 
-export async function login(username: string, password: string): Promise<ILoginResponse> {
-  const { setUser } = UserStore.getState();
+export async function login(form: ILoginForm): Promise<ILoginResponse> {
   const body = {
-    username: username,
-    password: password,
+    username: form.username,
+    password: form.password,
   };
   const { data } = await axiosInstance.post<ILoginResponse>(`users/login`, body);
-  setUser(data);
-
   return data;
 }
 
-export async function registerUesr(form: IUesrRegisterForm) {
+export async function registerUesr(form: IUserRegisterForm): Promise<any> {
   const body: UserRegister = {
     username: form.username,
     password: form.password,
@@ -46,19 +44,17 @@ export async function registerUesr(form: IUesrRegisterForm) {
     email_supervisor: form.email_supervisor,
     email_manager: form.email_manager,
     is_admin: form.is_admin || false,
+    position_id: 0,
+    section_id: 0,
   };
-
   const { data } = await axiosInstance.post<any>(`users/register`, body);
-
   return data;
 }
 
 export async function updateUser(form: IUserUpdateForm): Promise<any> {
-  const { user, setUser } = UserStore.getState();
-  if (!user) {
-    return;
+  if (!form.user_uuid || !form.position_id || !form.section_id) {
+    return `Invalid, lack some user data ${form.user_uuid} ${form.position_id} ${form.section_id}`;
   }
-
   const body: UserUpdate = {
     username: form.username,
     language: form.language,
@@ -80,46 +76,36 @@ export async function updateUser(form: IUserUpdateForm): Promise<any> {
     email: form.email,
     email_supervisor: form.email_supervisor,
     email_manager: form.email_manager,
-    user_uuid: user.user_uuid,
+    user_uuid: form.user_uuid,
+    position_id: form.position_id,
+    section_id: form.section_id,
   };
-
   const { data } = await axiosInstance.post<any>(`users/update_user`, body);
-  setUser(data);
-
   return data;
 }
-
-export async function changePassword(cur_pass: string, new_pass: string): Promise<any> {
-  const { user } = UserStore.getState();
-  if (!user) {
-    return;
+export async function changePassword(form: IChangePasswordForm): Promise<any> {
+  if (!form.user_uuid) {
+    return `Invalid, lack some user data ${form.user_uuid}`;
   }
   const body: ChangePassword = {
-    user_uuid: user.user_uuid,
-    cur_pass: cur_pass,
-    new_pass: new_pass,
+    user_uuid: form.user_uuid,
+    cur_pass: form.cur_pass,
+    new_pass: form.new_pass,
   };
   const { data } = await axiosInstance.post<any>(`users/change_password`, body);
-
   return data;
 }
 
 export async function forgotPassword(form: IForgotPasswordForm): Promise<any> {
-  const { data } = await axiosInstance.post<any>(`users/reset_password`, null, {
-    params: {
-      credential: form.credential,
-    },
+  const { data } = await axiosInstance.post<any>(`users/reset_password`, {
+    credential: form.credential,
   });
-
   return data;
 }
 
 export async function resetPassword(form: IForgotPasswordForm): Promise<any> {
-  const { data } = await axiosInstance.post<any>(`users/reset_password_to_default`, null, {
-    params: {
-      username: form.credential,
-    },
+  const { data } = await axiosInstance.post<any>(`users/reset_password_to_default`, {
+    credential: form.credential,
   });
-
   return data;
 }

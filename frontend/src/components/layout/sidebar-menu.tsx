@@ -30,9 +30,9 @@ export const SidebarMenu: FC = () => {
 
   const items: MenuItem[] = [
     getItem(l("menu.side.home"), 10, "/", <FiHome className="default-icon-size" />),
-    getItem(l("menu.side.mainTopic"), 20, null, <FiFile className="default-icon-size" />, [
-      getItem(l("menu.side.topic1"), 21, "/", <FiSearch className="default-icon-size" />),
-      getItem(l("menu.side.topic2"), 22, "/", <FiSearch className="default-icon-size" />),
+    getItem(l("menu.side.user"), 20, null, <FiFile className="default-icon-size" />, [
+      getItem(l("menu.side.register"), 21, "/", <FiSearch className="default-icon-size" />),
+      getItem(l("menu.side.profile"), 22, "/", <FiSearch className="default-icon-size" />),
     ]),
   ];
 

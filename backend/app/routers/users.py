@@ -3,9 +3,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from typing import AsyncGenerator, List
 
 from app.functions import api_key_auth
-from app.manager import UserManager
+from app.manager import UsersManager
 from app.schemas.users import (
-    PositionResponse,
+    UserCredential,
     UserRegister,
     UserRequest,
     UserUpdateRequest,
@@ -17,7 +17,7 @@ from app.schemas.users import (
 
 def users_routers(db: AsyncGenerator) -> APIRouter:
     router = APIRouter()
-    user_manager = UserManager()
+    user_manager = UsersManager()
 
     @router.get(
         "/users_all", response_model=UsersResponse, dependencies=[Depends(api_key_auth)]
@@ -73,14 +73,6 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
     async def get_user_by_email(email: str, db: AsyncSession = Depends(db)):
         return await user_manager.get_user_by_email(email=email, db=db)
 
-    @router.get(
-        "/positions",
-        response_model=PositionResponse,
-        dependencies=[Depends(api_key_auth)],
-    )
-    async def get_positions(db: AsyncSession = Depends(db)):
-        return PositionResponse(positions=await user_manager.get_positions(db=db))
-
     @router.post(
         "/login", response_model=UserResponse, dependencies=[Depends(api_key_auth)]
     )
@@ -126,14 +118,18 @@ def users_routers(db: AsyncGenerator) -> APIRouter:
         return f"Send reset password to {email} successfully"
 
     @router.post("/reset_password", dependencies=[Depends(api_key_auth)])
-    async def post_reset_password(credential: str, db: AsyncSession = Depends(db)):
-        email = await user_manager.post_reset_password(credential=credential, db=db)
+    async def post_reset_password(body: UserCredential, db: AsyncSession = Depends(db)):
+        email = await user_manager.post_reset_password(
+            credential=body.credential, db=db
+        )
         return f"Send reset password to {email} successfully"
 
     @router.post("/reset_password_to_default", dependencies=[Depends(api_key_auth)])
     async def post_reset_password_to_default(
-        username: str, db: AsyncSession = Depends(db)
+        body: UserCredential, db: AsyncSession = Depends(db)
     ):
-        await user_manager.post_reset_password_to_default(username=username, db=db)
+        await user_manager.post_reset_password_to_default(
+            username=body.credential, db=db
+        )
 
     return router

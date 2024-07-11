@@ -1,31 +1,29 @@
 "use client";
 import { Button, ConfigProvider, Form, Input, Layout, Modal, Space, Typography, message, theme } from "antd";
-import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
 import { NextPage } from "next";
-import { LayoutStore, ModeStore } from "@/store";
-import { useRouter } from "@/navigation";
-import { login, forgotPassword } from "@/actions";
-import { IForgotPasswordForm } from "@/types/user.type";
-import ForgotPasswordModal from "@/components/views/forgot-password-view";
-import { Noto_Sans_Thai } from "next/font/google";
+import { useTranslations } from "next-intl";
+import { useState, useEffect } from "react";
 
+import { login, forgotPassword } from "@/actions";
+import ForgotPasswordView from "@/components/views/forgot-password-view";
+import { useRouter } from "@/navigation";
+import { LayoutStore, ModeStore, UserStore } from "@/store";
+import { IForgotPasswordForm, ILoginForm } from "@/types";
+
+import { Noto_Sans_Thai } from "next/font/google";
+const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
 const { Content } = Layout;
 const { Text } = Typography;
-const notoTH = Noto_Sans_Thai({ subsets: ["thai", "latin", "latin-ext"] });
-
-interface ILoginForm {
-  username: string;
-  password: string;
-}
 
 const LoginPage: NextPage = () => {
+  const router = useRouter();
+
   const { backTarget } = LayoutStore();
   const { setIsLoading, setHeaderTitle, setBackable } = LayoutStore.getState();
   const toggleMode = ModeStore((state) => state.toggleMode);
-  const router = useRouter();
+  const { setUser } = UserStore.getState();
 
-  const [selectForgotPasswordModal, setSelectForgotPasswordModal] = useState<boolean>(false);
+  const [selectForgotPasswordView, setSelectForgotPasswordView] = useState<boolean>(false);
   const [selectContactAdmin, setSelectContactAdmin] = useState<boolean>(false);
 
   const config = {
@@ -52,7 +50,8 @@ const LoginPage: NextPage = () => {
 
   const onFinish = async (form: ILoginForm) => {
     setIsLoading(true);
-    const res = await login(form.username, form.password);
+    const res = await login(form);
+    setUser(res);
     setIsLoading(false);
     if (res) {
       router.replace(backTarget && backTarget !== "/login" ? backTarget : "/");
@@ -66,10 +65,10 @@ const LoginPage: NextPage = () => {
     } catch (err: any) {
       message.error(err);
     }
-    setSelectForgotPasswordModal(false);
+    setSelectForgotPasswordView(false);
   };
 
-  const handleCancelSelectForgotPassword = () => setSelectForgotPasswordModal(false);
+  const handleCancelSelectForgotPassword = () => setSelectForgotPasswordView(false);
 
   return (
     <ConfigProvider theme={config}>
@@ -99,7 +98,7 @@ const LoginPage: NextPage = () => {
                 <Button style={{ width: "9rem" }} type="primary" htmlType="submit">
                   {b("login")}
                 </Button>
-                <Button type="dashed" style={{ width: "9rem" }} onClick={() => setSelectForgotPasswordModal(true)}>
+                <Button type="dashed" style={{ width: "9rem" }} onClick={() => setSelectForgotPasswordView(true)}>
                   {p("login.title.forgotPassword")}
                 </Button>
               </Space>
@@ -126,11 +125,15 @@ const LoginPage: NextPage = () => {
             <a href="mailto:khessarin.kaeoli.a8y@ap.denso.com?subject=[BPK Apps]">
               &#x2022; khessarin.kaeoli.a8y@ap.denso.com
             </a>
+            <br />
+            <a href="mailto:kriangsak.panbua.a4r@ap.denso.com?subject=[BPK Apps]">
+              &#x2022; kriangsak.panbua.a4r@ap.denso.com
+            </a>
           </Modal>
         </Content>
-        <ForgotPasswordModal
+        <ForgotPasswordView
           title={p("login.title.forgotPassword")}
-          visible={selectForgotPasswordModal}
+          visible={selectForgotPasswordView}
           onFinish={onForgotPasswordFinish}
           onCancel={handleCancelSelectForgotPassword}
         />

@@ -1,6 +1,11 @@
 import datetime
 from pydantic import BaseModel, EmailStr
-from typing import Optional, List
+from typing import List
+
+from app.schemas.settings import Position, Section
+
+class UserCredential(BaseModel):
+    credential: str
 
 
 class UserRequest(BaseModel):
@@ -26,17 +31,19 @@ class User(BaseModel):
     line_id_group: List[int | None] = List[None]
     tel_no_primary: str | None = None
     tel_no_secondary: str | None = None
-    email: str | None = None
-    email_supervisor: str | None = None
-    email_manager: str | None = None
+    email: EmailStr | None = None
+    email_supervisor: EmailStr | None = None
+    email_manager: EmailStr | None = None
 
 
 class UserRegister(User):
+    position_id: int
+    section_id: int
     password: str
-    is_admin: bool
+    is_admin: bool = False
 
 
-class UserDetail(User):
+class UserDetail(User, Position, Section):
     user_uuid: str
     is_admin: bool
     created_at: datetime.datetime
@@ -55,21 +62,11 @@ class UsersResponse(BaseModel):
 
 class UserUpdateRequest(User):
     user_uuid: str
+    position_id: int
+    section_id: int
 
 
 class UserPassRequest(BaseModel):
     user_uuid: str
     cur_pass: str | None = None
     new_pass: str
-
-
-class Position(BaseModel):
-    position_id: int
-    position_name: str
-    position_shortname: str
-    position_level: str
-    position_group: str
-
-
-class PositionResponse(BaseModel):
-    positions: List[Position]

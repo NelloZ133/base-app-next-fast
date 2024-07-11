@@ -1,3 +1,4 @@
-from app.manager.users import UserManager
+from app.manager.users import UsersManager
+from app.manager.settings import SettingsManager
 
-__all__ = ["UserManager"]
+__all__ = ["UsersManager", "SettingsManager"]
